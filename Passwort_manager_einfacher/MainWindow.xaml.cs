@@ -623,6 +623,7 @@ namespace Passwort_manager_einfacher
         }
 
 
+
 //---------------------------------------------------Ziffern--------------------------------------------------------
 
         private void CheckBox_Ziffern_Ja_Checked(object sender, RoutedEventArgs e)
