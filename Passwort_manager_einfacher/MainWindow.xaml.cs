@@ -191,9 +191,9 @@ namespace Passwort_manager_einfacher
         private void Button_Registrieren_Click(object sender, RoutedEventArgs e)
         {
             
-            try
-            {
-
+            //Try catch wurde entfernt
+            
+                /*
                 //Schauen ob Datei vorhanden und überprüfen ob registriert
                 using (StreamReader sr = new StreamReader(path))
                 {
@@ -212,70 +212,71 @@ namespace Passwort_manager_einfacher
                         FelderRegClearen();
                     }
                 }
-                /*
+                
+
                 Lable_Anmelden.Visibility = Visibility.Visible;
                 PasswortBox_Passwort.Visibility = Visibility.Visible;
                 Button_Anmelden.Visibility = Visibility.Visible;
                 */
-            }
-            catch
+            
+            
+
+            //User erstellen
+            if (TextBox_Reg_Vorname.Text != "")
             {
-
-                //User erstellen
-                if (TextBox_Reg_Vorname.Text != "")
+                if (PasswortBox_Reg_Passwort.Password != "")
                 {
-                    if (PasswortBox_Reg_Passwort.Password != "")
+                    if (PasswortBox_Reg_Passwort_Wiederholen.Password != "")
                     {
-                        if (PasswortBox_Reg_Passwort_Wiederholen.Password != "")
+                        if (PasswortBox_Reg_Passwort.Password == PasswortBox_Reg_Passwort_Wiederholen.Password)
                         {
-                            if (PasswortBox_Reg_Passwort.Password == PasswortBox_Reg_Passwort_Wiederholen.Password)
+                            //Lables Reg Ausblenden
+                            Lable_Reg.Visibility = Visibility.Hidden;
+                            Lable_Vorname.Visibility = Visibility.Hidden;
+                            Lable_PW.Visibility = Visibility.Hidden;
+                            Lable_PW_WH.Visibility = Visibility.Hidden;
+                            Button_Registrieren.Visibility = Visibility.Hidden;
+                            TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
+                            PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
+                            PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
+
+                            //lable anmelden einblenden
+                            Lable_Anmelden.Visibility = Visibility.Visible;
+                            Lable_Anmelden_PW.Visibility = Visibility.Visible;
+                            PasswortBox_Passwort.Visibility = Visibility.Visible;
+                            Button_Anmelden.Visibility = Visibility.Visible;
+
+                            erstesMalAnmelden = true;
+                            string passwort_verschlüsselt = AesOperation.EncryptString(key, PasswortBox_Reg_Passwort.Password); 
+                            MessageBox.Show("Hallo und herzlich willkommen bei Ihrem Passwort Manager");
+                            User U1 = new User(TextBox_Reg_Vorname.Text, passwort_verschlüsselt, false);
+
+                            //User in Datei schreiben
+                            string JsonSchreiben = JsonConvert.SerializeObject(U1);
+                            using (StreamWriter sw = new StreamWriter(path))
                             {
-                                //Lables Reg Ausblenden
-                                Lable_Reg.Visibility = Visibility.Hidden;
-                                Lable_Vorname.Visibility = Visibility.Hidden;
-                                Lable_PW.Visibility = Visibility.Hidden;
-                                Lable_PW_WH.Visibility = Visibility.Hidden;
-                                Button_Registrieren.Visibility = Visibility.Hidden;
-                                TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
-                                PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
-                                PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
-
-                                //lable anmelden einblenden
-                                Lable_Anmelden.Visibility = Visibility.Visible;
-                                Lable_Anmelden_PW.Visibility = Visibility.Visible;
-                                PasswortBox_Passwort.Visibility = Visibility.Visible;
-                                Button_Anmelden.Visibility = Visibility.Visible;
-
-                                erstesMalAnmelden = true;
-                                MessageBox.Show("Hallo und herzlich willkommen bei Ihrem Passwort Manager");
-                                User U1 = new User(TextBox_Reg_Vorname.Text, PasswortBox_Reg_Passwort.Password, false);
-
-                                //User in Datei schreiben
-                                string JsonSchreiben = JsonConvert.SerializeObject(U1);
-                                using (StreamWriter sw = new StreamWriter(path))
-                                {
-                                    sw.WriteLine(JsonSchreiben);
-                                }
+                                sw.WriteLine(JsonSchreiben);
                             }
-                            else
-                                MessageBox.Show("Die Passwörter stimmen nicht überein!");
                         }
                         else
-                            MessageBox.Show("Bitte füllen Sie das 'Passwort wiederholen' Feld aus");
-                            
-                           
+                            MessageBox.Show("Die Passwörter stimmen nicht überein!");
                     }
                     else
-                        MessageBox.Show("Bitte füllen Sie das Feld 'Passwort' aus");
+                        MessageBox.Show("Bitte füllen Sie das 'Passwort wiederholen' Feld aus");
+                            
+                           
                 }
                 else
-                    MessageBox.Show("Bitte füllen Sie das Feld 'Vorname' aus.");
+                    MessageBox.Show("Bitte füllen Sie das Feld 'Passwort' aus");
+            }
+            else
+                MessageBox.Show("Bitte füllen Sie das Feld 'Vorname' aus.");
                    
                 
-               //Felder clearen
-                FelderRegClearen();
+            //Felder clearen
+            FelderRegClearen();
                
-            }
+            
 
         }
 
@@ -293,6 +294,10 @@ namespace Passwort_manager_einfacher
                     {
                         User U1 = JsonConvert.DeserializeObject<User>(line);
                         aktiv = U1;
+                        //Verschlüsseltes PW aus JSON entschlüsseln und zuweisen
+                        string passwort_entschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
+                        aktiv.MasterPW = passwort_entschlüsselt;
+                        MessageBox.Show(passwort_entschlüsselt); 
                     }
                     if (aktiv.MasterPW == PasswortBox_Passwort.Password)
                     {
@@ -311,7 +316,8 @@ namespace Passwort_manager_einfacher
                         TabItem_Anmelden_Reg.Visibility = Visibility.Hidden;
                         //Aktives TabItem ändern
                         TabControl1.SelectedItem = TabItem_PW_hinzufügen_löschen;
-
+                        string verschlüsseltes_PW = AesOperation.EncryptString(key, aktiv.MasterPW);
+                        aktiv.MasterPW = verschlüsseltes_PW; 
                     }
                     else
                     {
@@ -396,6 +402,8 @@ namespace Passwort_manager_einfacher
                     MessageBox.Show(passwort_verschlüsselt); 
                     aktiv.ListePasswörter.Add(P1);
 
+                    MessageBox.Show(aktiv.MasterPW); 
+
                     FelderPWHinzufügenClearen();
                 }
                 else
@@ -451,6 +459,13 @@ namespace Passwort_manager_einfacher
                         
                         //File löschen
                         File.Delete(path);
+
+                        string passwort_entschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
+                        aktiv.MasterPW = passwort_entschlüsselt; 
+
+                        string passwort_verschlüsselt = AesOperation.EncryptString(key, aktiv.MasterPW);
+                        aktiv.MasterPW = passwort_verschlüsselt; 
+
 
                         //File schreiben
                         string JsonSchreiben = JsonConvert.SerializeObject(aktiv);
@@ -824,6 +839,9 @@ namespace Passwort_manager_einfacher
 
         private void Button_Acc_löschen_Click(object sender, RoutedEventArgs e)
         {
+            string passwortentschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
+            aktiv.MasterPW = passwortentschlüsselt; 
+
             if (aktiv.ErstesMalAnmelden == false)
             {
                 if (PasswordBox_Acc_löschen.Password == aktiv.MasterPW)
