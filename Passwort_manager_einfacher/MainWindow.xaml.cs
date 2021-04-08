@@ -42,9 +42,12 @@ namespace Passwort_manager_einfacher
         string passwd;
         bool PasswörterEingeblendet = false;
 
-        
 
-        
+
+        string key = "b14ca5898a4e4133bbce2ea2315a1916";
+
+
+
 
 
         public MainWindow()
@@ -54,6 +57,7 @@ namespace Passwort_manager_einfacher
 
             InitializeComponent();
             //Alle Felder ausblenden
+            
             TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
             PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
             PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
@@ -72,7 +76,7 @@ namespace Passwort_manager_einfacher
             TabItem_PW_generieren.Visibility = Visibility.Hidden;
             TabItem_Acc_löschen.Visibility = Visibility.Hidden;
 
-
+            
 
 
 
@@ -160,7 +164,7 @@ namespace Passwort_manager_einfacher
                 }
                
 
-            }
+            }//User ist nicht registriert
             catch
             {
                 //Fortfahren Button und lable Ausblenden
@@ -346,6 +350,8 @@ namespace Passwort_manager_einfacher
             }
             else
             {
+                //genaueres überprüfen (unnötig)
+                /*
                 //Überprüfen ob Felder leer
                 if (TextBox_Webseite_hinzufügen.Text == "")
                 {
@@ -372,10 +378,22 @@ namespace Passwort_manager_einfacher
                         }
                     }
                 }
-                //Wenn alles OK passwort erstellen und aktiv Liste hinzufügen
+                */
+
+
+                if (TextBox_Webseite_hinzufügen.Text == "" || TextBox_User_Webseite_hinzufügen.Text == "" || Passwort_hizufügen_.Password == "" )
+                {
+                    MessageBox.Show("Es sind nicht alle Felder ausgefüllt !"); 
+                }
                 else if (Passwort_hizufügen_.Password == Passwort_hizufügen__WH.Password)
                 {
-                    Passwort P1 = new Passwort(TextBox_Webseite_hinzufügen.Text, TextBox_User_Webseite_hinzufügen.Text, Passwort_hizufügen_.Password);
+                  
+
+                    //Passwort wird verschlüsselt
+                    string passwort_verschlüsselt = AesOperation.EncryptString(key, Passwort_hizufügen_.Password); 
+
+                    Passwort P1 = new Passwort(TextBox_Webseite_hinzufügen.Text, TextBox_User_Webseite_hinzufügen.Text, passwort_verschlüsselt);
+                    MessageBox.Show(passwort_verschlüsselt); 
                     aktiv.ListePasswörter.Add(P1);
 
                     FelderPWHinzufügenClearen();
@@ -430,6 +448,7 @@ namespace Passwort_manager_einfacher
                     //Überprüfen ob angemeldet
                     if (angemeldet == true)
                     {
+                        
                         //File löschen
                         File.Delete(path);
 
@@ -450,6 +469,8 @@ namespace Passwort_manager_einfacher
                                 aktiv = U1;
                             }
                         }
+
+                        
 
                         //Passwörter in ListBox geben
                         foreach (var item in aktiv.ListePasswörter)
@@ -517,8 +538,10 @@ namespace Passwort_manager_einfacher
                 {
                     if (item == ListBox_Ausgeben.SelectedItem)
                     {
-                        Passwort Angezeigt = (Passwort)item;                       
-                        MessageBox.Show($"Passwort Text: {Angezeigt.PasswortText}");
+                        
+                        Passwort Angezeigt = (Passwort)item;
+                        string passwort_entschlüsselt = AesOperation.DecryptString(key, Angezeigt.PasswortText);
+                        MessageBox.Show($"Passwort Text: {passwort_entschlüsselt}");
                     }
                     
                 }

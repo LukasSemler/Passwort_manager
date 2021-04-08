@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AesOperation.cs" />
     <Compile Include="Passwort.cs" />
     <Compile Include="User.cs" />
     <Page Include="MainWindow.xaml">
