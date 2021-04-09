@@ -23,7 +23,7 @@ namespace Passwort_manager_einfacher
 
         public override string ToString()
         {
-            return $"Verwendungszweck: {Verwendungszweck} | Username: {Username} | Passwort: {PasswortText}";
+            return $"Verwendungszweck: {Verwendungszweck} | Username: {Username} | Passwort: *************";
         }
     }
 }

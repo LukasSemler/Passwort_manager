@@ -40,11 +40,14 @@ namespace Passwort_manager_einfacher
         string PW_erzeugen;
         int Länge_passwort;
         string passwd;
-        bool PasswörterEingeblendet = false;
+        
 
 
 
         string key = "b14ca5898a4e4133bbce2ea2315a1916";
+
+
+        bool gespeichert = true; 
 
 
 
@@ -76,7 +79,12 @@ namespace Passwort_manager_einfacher
             TabItem_PW_generieren.Visibility = Visibility.Hidden;
             TabItem_Acc_löschen.Visibility = Visibility.Hidden;
 
+            //Lable gespeichert auf Grün setzen
+            Lable_Gespeichert.Background = Brushes.Lime;
+
+
             
+
 
 
 
@@ -317,7 +325,17 @@ namespace Passwort_manager_einfacher
                         //Aktives TabItem ändern
                         TabControl1.SelectedItem = TabItem_PW_hinzufügen_löschen;
                         string verschlüsseltes_PW = AesOperation.EncryptString(key, aktiv.MasterPW);
-                        aktiv.MasterPW = verschlüsseltes_PW; 
+                        aktiv.MasterPW = verschlüsseltes_PW;
+
+
+                        //Listbox beim Starten befüllen: 
+                        foreach (var item in aktiv.ListePasswörter)
+                        {
+                            ListBox_Ausgeben.Items.Add(item);
+
+                        }
+
+
                     }
                     else
                     {
@@ -402,7 +420,23 @@ namespace Passwort_manager_einfacher
                     MessageBox.Show(passwort_verschlüsselt); 
                     aktiv.ListePasswörter.Add(P1);
 
-                    MessageBox.Show(aktiv.MasterPW); 
+                    MessageBox.Show(aktiv.MasterPW);
+                    //Gespeichert auf false setzen
+                    gespeichert = false;
+                    Lable_Gespeichert.Background = Brushes.Red; 
+
+
+
+                    //Listbox Clearen und Passwörter neu einfüllen
+                    ListBox_Ausgeben.Items.Clear(); 
+                    foreach (var item in aktiv.ListePasswörter)
+                    {
+                        ListBox_Ausgeben.Items.Add(item);
+
+                    }
+
+
+
 
                     FelderPWHinzufügenClearen();
                 }
@@ -419,29 +453,72 @@ namespace Passwort_manager_einfacher
 
         private void Button_abmelden_Click(object sender, RoutedEventArgs e)
         {
-            angemeldet = false;
-            PasswörterEingeblendet = false;
-            ListBox_Ausgeben.Items.Clear();
-            MessageBox.Show("Sie wurden abgemeldet");
-            Lable_Ausgabe.Content = "";
-            TextBox_länge_PW.Clear();
+            //Überprüfen ob es änderungen gibt
+            if (gespeichert == true)
+            {
+                angemeldet = false;
+                ListBox_Ausgeben.Items.Clear();
+                MessageBox.Show("Sie wurden abgemeldet");
+                Lable_Ausgabe.Content = "";
+                TextBox_länge_PW.Clear();
 
-            //TabItem Anmelden Reg einblenden
-            TabItem_Anmelden_Reg.Visibility = Visibility.Visible;
+                //TabItem Anmelden Reg einblenden
+                TabItem_Anmelden_Reg.Visibility = Visibility.Visible;
 
-            //Andere Tab Item ausblenden
-            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
-            TabItem_PW_generieren.Visibility = Visibility.Hidden;
-            TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
+                //Andere Tab Item ausblenden
+                TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+                TabItem_PW_generieren.Visibility = Visibility.Hidden;
+                TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
 
-            //Tab item wechseln
-            TabControl1.SelectedItem = TabItem_Anmelden_Reg;
+                //Tab item wechseln
+                TabControl1.SelectedItem = TabItem_Anmelden_Reg;
 
-            //Lable anmelden einblenden
-            Lable_Anmelden.Visibility = Visibility.Visible;
-            Lable_Anmelden_PW.Visibility = Visibility.Visible;
-            PasswortBox_Passwort.Visibility = Visibility.Visible;
-            Button_Anmelden.Visibility = Visibility.Visible;
+                //Lable anmelden einblenden
+                Lable_Anmelden.Visibility = Visibility.Visible;
+                Lable_Anmelden_PW.Visibility = Visibility.Visible;
+                PasswortBox_Passwort.Visibility = Visibility.Visible;
+                Button_Anmelden.Visibility = Visibility.Visible;
+
+            }
+            else
+            {
+                string MessageBox_text = "Wenn Sie das Programm schließen werden alle nicht gespeicherten Änderungen verworfen ! Wollen sie wirlkich verlassen ? ";
+                string caption = "Programm verlassen";
+                MessageBoxButton button = MessageBoxButton.YesNo;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result = MessageBox.Show(MessageBox_text, caption, button, icon);
+
+                if(result == MessageBoxResult.Yes)
+                {
+                    angemeldet = false;
+                    ListBox_Ausgeben.Items.Clear();
+                    MessageBox.Show("Sie wurden abgemeldet");
+                    Lable_Ausgabe.Content = "";
+                    TextBox_länge_PW.Clear();
+
+                    //TabItem Anmelden Reg einblenden
+                    TabItem_Anmelden_Reg.Visibility = Visibility.Visible;
+
+                    //Andere Tab Item ausblenden
+                    TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+                    TabItem_PW_generieren.Visibility = Visibility.Hidden;
+                    TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
+
+                    //Tab item wechseln
+                    TabControl1.SelectedItem = TabItem_Anmelden_Reg;
+
+                    //Lable anmelden einblenden
+                    Lable_Anmelden.Visibility = Visibility.Visible;
+                    Lable_Anmelden_PW.Visibility = Visibility.Visible;
+                    PasswortBox_Passwort.Visibility = Visibility.Visible;
+                    Button_Anmelden.Visibility = Visibility.Visible;
+
+                }
+                else
+                {
+
+                }
+            }
 
         }
 
@@ -451,60 +528,64 @@ namespace Passwort_manager_einfacher
         {
             if (angemeldet == true)
             {
-                if (PasswörterEingeblendet == false)
+               
+                //Überprüfen ob angemeldet
+                if (angemeldet == true)
                 {
-                    //Überprüfen ob angemeldet
-                    if (angemeldet == true)
+                    //Listbox löschen um sie danach neu zu befüllen können
+                    ListBox_Ausgeben.Items.Clear(); 
+
+                    //File löschen
+                    File.Delete(path);
+
+                    //passwort zuerst entschlüsseln damit es nicht noch einem verschlüsselt wird 
+                    string passwort_entschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
+                    aktiv.MasterPW = passwort_entschlüsselt; 
+
+                    //passwort wieder verschlüsseln
+                    string passwort_verschlüsselt = AesOperation.EncryptString(key, aktiv.MasterPW);
+                    aktiv.MasterPW = passwort_verschlüsselt; 
+
+
+                    //File schreiben
+                    string JsonSchreiben = JsonConvert.SerializeObject(aktiv);
+                    using (StreamWriter sw = new StreamWriter(path))
                     {
-                        
-                        //File löschen
-                        File.Delete(path);
-
-                        string passwort_entschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
-                        aktiv.MasterPW = passwort_entschlüsselt; 
-
-                        string passwort_verschlüsselt = AesOperation.EncryptString(key, aktiv.MasterPW);
-                        aktiv.MasterPW = passwort_verschlüsselt; 
-
-
-                        //File schreiben
-                        string JsonSchreiben = JsonConvert.SerializeObject(aktiv);
-                        using (StreamWriter sw = new StreamWriter(path))
-                        {
-                            sw.WriteLine(JsonSchreiben);
-                        }
-
-                        //File lesen
-                        using (StreamReader sr = new StreamReader(path))
-                        {
-                            string line;
-                            while ((line = sr.ReadLine()) != null)
-                            {
-                                User U1 = JsonConvert.DeserializeObject<User>(line);
-                                aktiv = U1;
-                            }
-                        }
-
-                        
-
-                        //Passwörter in ListBox geben
-                        foreach (var item in aktiv.ListePasswörter)
-                        {
-                            ListBox_Ausgeben.Items.Add(item);
-                            
-                        }
-
-                        PasswörterEingeblendet = true;
-
+                        sw.WriteLine(JsonSchreiben);
                     }
-                    else
-                        MessageBox.Show("Bitte melden Sie sich zuerst an!");
+
+                    //File lesen
+                    using (StreamReader sr = new StreamReader(path))
+                    {
+                        string line;
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            User U1 = JsonConvert.DeserializeObject<User>(line);
+                            aktiv = U1;
+                        }
+                    }
+
+                        
+
+                    //Passwörter in ListBox geben
+                    foreach (var item in aktiv.ListePasswörter)
+                    {
+                        ListBox_Ausgeben.Items.Add(item);
+                            
+                    }
+
+                        
+
+
+                    //Gespeichert auf true setzen
+                    gespeichert = true;
+                    Lable_Gespeichert.Background = Brushes.Lime; 
 
                 }
                 else
-                {
-                    MessageBox.Show("Die Passwörter werden bereits angezeigt");
-                }
+                    MessageBox.Show("Bitte melden Sie sich zuerst an!");
+
+                
             }
             else
                 MessageBox.Show("Bitte melden Sie sich zuerst an!");
@@ -514,55 +595,27 @@ namespace Passwort_manager_einfacher
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
-        private void Button_PW_ausblenden_Click(object sender, RoutedEventArgs e)
-        {
-            if (angemeldet == true)
-            {
-                if (PasswörterEingeblendet == true)
-                {
-                    //Überprüfen ob angemeldet
-                    if (angemeldet == true)
-                    {
-                        //ListBox leeren
-                        ListBox_Ausgeben.Items.Clear();
-                        PasswörterEingeblendet = false;
-                    }
-                    else
-                        MessageBox.Show("Bitte melden Sie sich zuerst an!");
-                }
-                else
-                {
-                    MessageBox.Show("Die Passwörter werden nicht angezeigt");
-                }
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
-           
-            
+       
 
-        }
 
         //----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         private void Button_PW_text_einblenden_Click(object sender, RoutedEventArgs e)
         {
-            if (PasswörterEingeblendet == true)
+           
+            foreach (var item in ListBox_Ausgeben.Items)
             {
-                foreach (var item in ListBox_Ausgeben.Items)
+                if (item == ListBox_Ausgeben.SelectedItem)
                 {
-                    if (item == ListBox_Ausgeben.SelectedItem)
-                    {
                         
-                        Passwort Angezeigt = (Passwort)item;
-                        string passwort_entschlüsselt = AesOperation.DecryptString(key, Angezeigt.PasswortText);
-                        MessageBox.Show($"Passwort Text: {passwort_entschlüsselt}");
-                    }
-                    
+                    Passwort Angezeigt = (Passwort)item;
+                    string passwort_entschlüsselt = AesOperation.DecryptString(key, Angezeigt.PasswortText);
+                    MessageBox.Show($"Passwort Text: {passwort_entschlüsselt}");
                 }
+                    
             }
-            else
-                MessageBox.Show("Sie müssen zuerst die Passwörter einblenden!");
+            
         }
 
 
@@ -580,6 +633,11 @@ namespace Passwort_manager_einfacher
                 ListBox_Ausgeben.Items.Remove(zuLöschen);
                 //Aus der Liste löschen    
                 aktiv.ListePasswörter.Remove(zuLöschen);
+
+                //Lable auf Rot setzen und geseichert auf false
+                Lable_Gespeichert.Background = Brushes.Red;
+                gespeichert = false; 
+
             }
             else
                 MessageBox.Show("Bitte melden Sie sich zuerst an!");
@@ -590,15 +648,19 @@ namespace Passwort_manager_einfacher
 
 //_________________________________________TAB3___________________________________________________________________________________________________
 
-//------------Kleinbuchstaben---------------------------------------------------------------------------------------------------------------------
 
+
+        /*
         private void CheckBox_Kleinbuchstaben_Ja_Checked(object sender, RoutedEventArgs e)
         {
             if (angemeldet == true)
             {
+                
                 if (CheckBox_Kleinbuchstaben_nein.IsChecked == true)
                 {
                     MessageBox.Show("Sie können nicht beides haben ...!");
+                    
+                   
                 }
                 else
                     Kleinbuchstaben = true;
@@ -608,129 +670,62 @@ namespace Passwort_manager_einfacher
            
         }
 
-        private void CheckBox_Kleinbuchstaben_nein_Checked(object sender, RoutedEventArgs e)
+        */
+
+
+        //------------------------Großbuchstaben----------------------------------------
+        private void Radio_Großbuchstaben_Ja_Checked(object sender, RoutedEventArgs e)
         {
-            if (angemeldet == true)
+            if (Radio_Großbuchstaben_Ja.IsChecked == true)
             {
-                if (CheckBox_Kleinbuchstaben_Ja.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                }
-                else
-                    Kleinbuchstaben = false;
+                Radio_Großbuchstaben_Nein.IsChecked = false;
+                Großbuchstaben = true;
+                MessageBox.Show(Großbuchstaben.ToString()); 
             }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
+            else if (Radio_Großbuchstaben_Nein.IsChecked == true)
+            {
+                Radio_Großbuchstaben_Ja.IsChecked = false;
+                Großbuchstaben = false;
+                MessageBox.Show(Großbuchstaben.ToString());
+            }
             
         }
 
-
-//--------------------------------------------Großbuchstaben---------------------------------------------------------------
-
-        private void CheckBox_Großbuchstaben_Ja_Checked(object sender, RoutedEventArgs e)
+        private void Radio_Großbuchstaben_Nein_Checked(object sender, RoutedEventArgs e)
         {
-            if (angemeldet == true)
+            if (Radio_Großbuchstaben_Nein.IsChecked == true)
             {
-                if (CheckBox_Großbuchstaben_nein.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                }
-                else
-                    Großbuchstaben = true;
+                Radio_Großbuchstaben_Ja.IsChecked = false;
+                Großbuchstaben = false;
+                MessageBox.Show(Großbuchstaben.ToString());
+
             }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
-            
+            else if (Radio_Großbuchstaben_Ja.IsChecked == true)
+            {
+               Radio_Großbuchstaben_Nein.IsChecked = false;
+                Großbuchstaben = true;
+                MessageBox.Show(Großbuchstaben.ToString());
+
+            }
         }
 
-        private void CheckBox_Großbuchstaben_nein_Checked(object sender, RoutedEventArgs e)
-        {
-            if (angemeldet == true)
-            {
-                if (CheckBox_Großbuchstaben_Ja.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                }
-                else
-                    Großbuchstaben = false;
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
-            
-
-        }
+        //------------------------Kleinbuchstaben----------------------------------------
 
 
 
-//---------------------------------------------------Ziffern--------------------------------------------------------
 
-        private void CheckBox_Ziffern_Ja_Checked(object sender, RoutedEventArgs e)
-        {
-            if (angemeldet == true)
-            {
-                if (CheckBox_Ziffern_nein.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                }
-                else
-                    Ziffern = true;
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
-            
-        }
 
-        private void CheckBox_Ziffern_nein_Checked(object sender, RoutedEventArgs e)
-        {
-            if (angemeldet == true)
-            {
-                if (CheckBox_Ziffern_Ja.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                }
-                else
-                    Ziffern = false;
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
 
-            
-        }
 
-//----------------------------------------------Sonderzeichen--------------------------------------------------------
 
-        private void CheckBox_Sonderzeichen_Ja_Checked(object sender, RoutedEventArgs e)
-        {
-            if (angemeldet == true)
-            {
-                if (CheckBox_Sonderzeichen_nein.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                }
-                else
-                    Sonderzeichen = true;
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
-           
-        }
 
-        private void CheckBox_Sonderzeichen_nein_Checked(object sender, RoutedEventArgs e)
-        {
-            if (angemeldet == true)
-            {
-                if (CheckBox_Sonderzeichen_Ja.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                }
-                else
-                    Sonderzeichen = false;
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");            
-        }
 
-//------------------------------------------Generieren--------------------------------------------------------
+
+
+
+
+
+        //------------------------------------------Generieren--------------------------------------------------------
 
         private void Button_PW_generieren_Click(object sender, RoutedEventArgs e)
         {
