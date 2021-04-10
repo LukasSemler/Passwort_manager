@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passwort_manager_einfacher"
         mc:Ignorable="d"
-        Title="Passwort Manager" Height="609" Width="1076">
+        Title="Passwort Manager" Height="609" Width="1076" Icon="Passwort_logo.jpg">
     <Grid HorizontalAlignment="Right" Margin="0,0,0.333,-0.333" Width="793">
         <TabControl x:Name="TabControl1" HorizontalAlignment="Left" Height="560" Margin="-270,10,0,0" VerticalAlignment="Top" Width="1053">
             <TabItem x:Name="TabItem_Anmelden_Reg" Header="Anmelden/registrieren" Background="#FF00E8D1">
@@ -42,7 +42,7 @@
                     <Label Content="Passwort löschen" HorizontalAlignment="Left" Height="38" Margin="825,379,0,0" VerticalAlignment="Top" Width="160" FontSize="20" Foreground="White"/>
                     <Label Content="Bitte markieren Sie das zu Löschende Passwort&#xA;und drücken Sie auf &quot;Löschen&quot;." HorizontalAlignment="Left" Margin="772,422,0,0" VerticalAlignment="Top" Height="54" Width="255" FontSize="15" Foreground="White"/>
                     <Button x:Name="Button_löschen" Content="Löschen" HorizontalAlignment="Left" Height="27" Margin="863,487,0,0" VerticalAlignment="Top" Width="88" Click="Button_löschen_Click" FontSize="13" Background="Red" BorderBrush="Black"/>
-                    <Button x:Name="Button_PW_laden" Content="Passwörter laden / Speichern " HorizontalAlignment="Left" Height="27" Margin="10,487,0,0" VerticalAlignment="Top" Width="180" Click="Button_PW_laden_Click" Background="#FF00DBC5" FontSize="13" BorderBrush="Black"/>
+                    <Button x:Name="Button_PW_laden" Content=" Speichern " HorizontalAlignment="Left" Height="27" Margin="10,487,0,0" VerticalAlignment="Top" Width="73" Click="Button_PW_laden_Click" Background="#FF00DBC5" FontSize="13" BorderBrush="Black"/>
                     <Label Content="Passwort&#xD;&#xA;wiederholen:" HorizontalAlignment="Left" Height="53" Margin="714,278,0,0" VerticalAlignment="Top" Width="129" FontSize="17" Foreground="White"/>
                     <Button x:Name="Button_abmelden1_Copy" Content="Abmelden" HorizontalAlignment="Left" Height="28" Margin="947,10,0,0" VerticalAlignment="Top" Width="89" Background="Red" Click="Button_abmelden_Click" FontSize="15" BorderBrush="Black"/>
                     <Button x:Name="Button_PW_text_einblenden" Content="Passwort Text einblenden " HorizontalAlignment="Left" Height="27" Margin="551,487,0,0" VerticalAlignment="Top" Width="152" Background="#FF005C53" FontSize="13" BorderBrush="White" Foreground="White" Click="Button_PW_text_einblenden_Click"/>

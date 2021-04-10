@@ -305,7 +305,7 @@ namespace Passwort_manager_einfacher
                         //Verschlüsseltes PW aus JSON entschlüsseln und zuweisen
                         string passwort_entschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
                         aktiv.MasterPW = passwort_entschlüsselt;
-                        MessageBox.Show(passwort_entschlüsselt); 
+                         
                     }
                     if (aktiv.MasterPW == PasswortBox_Passwort.Password)
                     {
@@ -416,11 +416,9 @@ namespace Passwort_manager_einfacher
                     //Passwort wird verschlüsselt
                     string passwort_verschlüsselt = AesOperation.EncryptString(key, Passwort_hizufügen_.Password); 
 
-                    Passwort P1 = new Passwort(TextBox_Webseite_hinzufügen.Text, TextBox_User_Webseite_hinzufügen.Text, passwort_verschlüsselt);
-                    MessageBox.Show(passwort_verschlüsselt); 
+                    Passwort P1 = new Passwort(TextBox_Webseite_hinzufügen.Text, TextBox_User_Webseite_hinzufügen.Text, passwort_verschlüsselt); 
                     aktiv.ListePasswörter.Add(P1);
 
-                    MessageBox.Show(aktiv.MasterPW);
                     //Gespeichert auf false setzen
                     gespeichert = false;
                     Lable_Gespeichert.Background = Brushes.Red; 
@@ -441,7 +439,12 @@ namespace Passwort_manager_einfacher
                     FelderPWHinzufügenClearen();
                 }
                 else
+                {
                     MessageBox.Show("Die Passwörter stimmen nicht überein!");
+                    Passwort_hizufügen_.Clear();
+                    Passwort_hizufügen__WH.Clear(); 
+                }
+                    
                
             }
 
@@ -848,6 +851,10 @@ namespace Passwort_manager_einfacher
 
 
                     Länge_passwort = Convert.ToInt32(TextBox_länge_PW.Text);
+                    if (Länge_passwort <= 0)
+                    {
+                        MessageBox.Show("Die Länge des Passworts muss positiv sein"); 
+                    }
                     int laenge = Länge_passwort;
 
                     //a=1; A=2; 1=4
