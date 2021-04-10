@@ -50,7 +50,7 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_PW_generieren" Header="Passwort generieren" Background="#FF005C53" Margin="-2.333,-2,-2,0" BorderBrush="#FF005C53" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FF494949" Margin="0,-4,0.333,4.333">
+                <Grid Background="#FF494949" Margin="0,0,0.667,0.333">
                     <Button x:Name="Button_abmelden1" Content="Abmelden" HorizontalAlignment="Left" Height="28" Margin="947,10,0,0" VerticalAlignment="Top" Width="89" Background="Red" Click="Button_abmelden_Click" FontSize="15" BorderBrush="Black"/>
                     <Label Content="Passwörter generieren " HorizontalAlignment="Left" Margin="357,25,0,0" VerticalAlignment="Top" FontSize="30" Foreground="White" RenderTransformOrigin="0.849,0.431"/>
                     <Label Content="Hier könne Sie Passwörter generieren lassen ..." HorizontalAlignment="Left" Margin="33,95,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
@@ -73,8 +73,23 @@
                     <Label Content="Sollen Kleinbuchstaben verwendet werden ?" HorizontalAlignment="Left" Height="51" Margin="33,329,0,0" VerticalAlignment="Top" Width="346" FontSize="17" Foreground="White"/>
                     <Label Content="Sollen Ziffern verwendet werden ?" HorizontalAlignment="Left" Height="58" Margin="33,388,0,0" VerticalAlignment="Top" Width="275" FontSize="17" Foreground="White"/>
                     <Label Content="Sollen Sonderzeichen verwendet werden ?" HorizontalAlignment="Left" Height="55" Margin="33,453,0,0" VerticalAlignment="Top" Width="336" FontSize="17" Foreground="White"/>
-                    <RadioButton x:Name="Radio_Großbuchstaben_Ja" Content="Ja" HorizontalAlignment="Left" Margin="389,274,0,0" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Großbuchstaben_Ja_Checked"/>
-                    <RadioButton x:Name="Radio_Großbuchstaben_Nein" Content="Nein" HorizontalAlignment="Left" Margin="448,274,0,0" VerticalAlignment="Top" Height="25" Width="56"  FontSize="17" Foreground="White" Checked="Radio_Großbuchstaben_Nein_Checked"/>
+                    <WrapPanel HorizontalAlignment="Left" Height="25" Margin="389,336,0,0" VerticalAlignment="Top" Width="107" Background="Black">
+                        <RadioButton x:Name="Radio_Kleinbuchstaben_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Kleinbuchstaben_Ja_Checked" />
+                        <RadioButton x:Name="Radio_Kleinbuchstaben_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="17" Foreground="White" Checked="Radio_Kleinbuchstaben_Nein_Checked" />
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Height="28" Margin="389,395,0,0" VerticalAlignment="Top" Width="107" Background="Black">
+                        <RadioButton x:Name="Radio_Ziffern_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Ziffern_Ja_Checked"  />
+                        <RadioButton x:Name="Radio_Ziffern_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="17" Foreground="White" Checked="Radio_Ziffern_Nein_Checked" />
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Height="27" Margin="389,460,0,0" VerticalAlignment="Top" Width="107" Background="Black">
+                        <RadioButton x:Name="Radio_Sonderzeichen_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Sonderzeichen_Ja_Checked"   />
+                        <RadioButton x:Name="Radio_Sonderzeichen_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="17" Foreground="White" Checked="Radio_Sonderzeichen_Nein_Checked"  />
+                    </WrapPanel>
+                    <WrapPanel HorizontalAlignment="Left" Height="25" Margin="389,270,0,0" VerticalAlignment="Top" Width="107" Background="Black">
+                        <RadioButton x:Name="Radio_Großbuchstaben_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Großbuchstaben_Ja_Checked"/>
+                        <RadioButton x:Name="Radio_Großbuchstaben_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="56"  FontSize="17" Foreground="White" Checked="Radio_Großbuchstaben_Nein_Checked"/>
+                    </WrapPanel>
+
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_Acc_löschen" Header="Account löschen " Background="#FF009C8C" Margin="-2,-2,-2,0">

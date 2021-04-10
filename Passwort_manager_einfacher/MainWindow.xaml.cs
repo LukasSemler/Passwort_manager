@@ -697,14 +697,14 @@ namespace Passwort_manager_einfacher
             {
                 Radio_Großbuchstaben_Ja.IsChecked = false;
                 Großbuchstaben = false;
-                MessageBox.Show(Großbuchstaben.ToString());
+                
 
             }
             else if (Radio_Großbuchstaben_Ja.IsChecked == true)
             {
                Radio_Großbuchstaben_Nein.IsChecked = false;
                 Großbuchstaben = true;
-                MessageBox.Show(Großbuchstaben.ToString());
+                
 
             }
         }
@@ -712,14 +712,114 @@ namespace Passwort_manager_einfacher
         //------------------------Kleinbuchstaben----------------------------------------
 
 
+        private void Radio_Kleinbuchstaben_Ja_Checked(object sender, RoutedEventArgs e)
+        {
+
+            if (Radio_Kleinbuchstaben_Ja.IsChecked == true)
+            {
+                Radio_Kleinbuchstaben_Nein.IsChecked = false;
+                Kleinbuchstaben = true;
+                
+            }
+            else if (Radio_Kleinbuchstaben_Nein.IsChecked == true)
+            {
+                Radio_Kleinbuchstaben_Ja.IsChecked = false;
+                Kleinbuchstaben = false;
+               
+            }
+        }
 
 
+        private void Radio_Kleinbuchstaben_Nein_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Radio_Kleinbuchstaben_Nein.IsChecked == true)
+            {
+                Radio_Kleinbuchstaben_Ja.IsChecked = false;
+                Kleinbuchstaben = false;
 
 
+            }
+            else if (Radio_Kleinbuchstaben_Ja.IsChecked == true)
+            {
+                Radio_Kleinbuchstaben_Nein.IsChecked = false;
+                Kleinbuchstaben = true;
 
 
+            }
+        }
+
+        //------------------------Ziffern----------------------------------------
+
+        private void Radio_Ziffern_Ja_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Radio_Ziffern_Ja.IsChecked == true)
+            {
+                Radio_Ziffern_Nein.IsChecked = false;
+                Ziffern = true;
+
+            }
+            else if (Radio_Ziffern_Nein.IsChecked == true)
+            {
+                Radio_Ziffern_Ja.IsChecked = false;
+                Ziffern = false;
+
+            }
+        }
+
+        private void Radio_Ziffern_Nein_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Radio_Ziffern_Nein.IsChecked == true)
+            {
+                Radio_Ziffern_Ja.IsChecked = false;
+                Ziffern = false;
 
 
+            }
+            else if (Radio_Ziffern_Ja.IsChecked == true)
+            {
+                Radio_Ziffern_Nein.IsChecked = false;
+                Ziffern = true;
+
+
+            }
+        }
+
+
+        //------------------------Sonderzeichen---------------------------------------
+
+        private void Radio_Sonderzeichen_Ja_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Radio_Sonderzeichen_Ja.IsChecked == true)
+            {
+                Radio_Sonderzeichen_Nein.IsChecked = false;
+                Sonderzeichen = true;
+
+            }
+            else if (Radio_Sonderzeichen_Nein.IsChecked == true)
+            {
+                Radio_Sonderzeichen_Ja.IsChecked = false;
+                Sonderzeichen = false;
+
+            }
+        }
+
+        private void Radio_Sonderzeichen_Nein_Checked(object sender, RoutedEventArgs e)
+        {
+            if (Radio_Sonderzeichen_Nein.IsChecked == true)
+            {
+                Radio_Sonderzeichen_Ja.IsChecked = false;
+                Sonderzeichen = false;
+
+
+            }
+            else if (Radio_Sonderzeichen_Ja.IsChecked == true)
+            {
+                Radio_Sonderzeichen_Nein.IsChecked = false;
+                Sonderzeichen = true;
+
+
+            }
+        }
 
 
 
@@ -729,7 +829,7 @@ namespace Passwort_manager_einfacher
 
         private void Button_PW_generieren_Click(object sender, RoutedEventArgs e)
         {
-
+            
             if (angemeldet == true)
                 try
                 {
@@ -773,8 +873,8 @@ namespace Passwort_manager_einfacher
 
                     if ((!Kleinbuchstaben) && (!Großbuchstaben) && (!Ziffern) && (!Sonderzeichen))
                     {
-                        MessageBox.Show("Nichts ausgewählt");
-                        Close();
+                        MessageBox.Show("Sie müssen etwas auswählen");
+                        
                     }
                     Random rnd = new Random();
 
