@@ -5,58 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passwort_manager_einfacher"
         mc:Ignorable="d"
-        Title="Passwort Manager" Height="609" Width="1076" Icon="Passwort_logo.jpg">
+        Title="Passwort Manager" Height="766.811" Width="1400.659" Icon="Passwort_logo.jpg">
     <Grid HorizontalAlignment="Right" Margin="0,0,0.333,-0.333" Width="793">
-        <TabControl x:Name="TabControl1" HorizontalAlignment="Left" Height="560" Margin="-270,10,0,0" VerticalAlignment="Top" Width="1053">
-            <TabItem x:Name="TabItem_Anmelden_Reg" Header="Anmelden/registrieren" Background="#FF00E8D1">
-                <Grid Background="#FF5E6161" Margin="0,-3,-12.333,-18.667">
-                    <TextBox x:Name="TextBox_Reg_Vorname" HorizontalAlignment="Left" Height="27" Margin="237,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" FontSize="17"/>
-                    <PasswordBox x:Name="PasswortBox_Reg_Passwort" HorizontalAlignment="Left" Height="27" Margin="237,237,0,0" VerticalAlignment="Top" Width="163" FontSize="17"/>
-                    <PasswordBox x:Name="PasswortBox_Reg_Passwort_Wiederholen" HorizontalAlignment="Left" Height="27" Margin="237,327,0,0" VerticalAlignment="Top" Width="163" FontSize="17"/>
-                    <Label x:Name="Lable_Reg" Content="Registrieren " HorizontalAlignment="Left" Height="51" Margin="152,41,0,0" VerticalAlignment="Top" Width="166" FontSize="30" Foreground="White"/>
-                    <Label x:Name="Lable_Anmelden" Content="Anmelden" HorizontalAlignment="Left" Height="51" Margin="760,41,0,0" VerticalAlignment="Top" Width="154" FontSize="30" Foreground="White"/>
-                    <PasswordBox x:Name="PasswortBox_Passwort" HorizontalAlignment="Left" Height="27" Margin="751,237,0,0" VerticalAlignment="Top" Width="163" FontSize="17"/>
-                    <Button x:Name="Button_Registrieren" Content="Registrieren" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="237,398,0,0" Click="Button_Registrieren_Click" Foreground="Black" Background="#FF00DBC5" FontSize="17" BorderBrush="Black"/>
-                    <Button x:Name="Button_Anmelden" Content="Anmelden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="783,283,0,0" Click="Button_Anmelden_Click" Foreground="Black" Background="#FF00DBC5" FontSize="17" BorderBrush="Black"/>
-                    <Label x:Name="Lable_Vorname" Content="Vorname:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="63,133,0,0" Foreground="White" FontSize="17"/>
-                    <Label x:Name="Lable_PW" Content="Passwort:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="64,227,0,0" Foreground="White" FontSize="17"/>
-                    <Label x:Name="Lable_Anmelden_PW" Content="Passwort:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="635,236,0,0" Foreground="White" FontSize="17"/>
-                    <Label x:Name="Lable_PW_WH" Content="Passwort wiederholen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="36,321,0,0" Foreground="White" FontSize="17" Width="183"/>
-                    <Button x:Name="Button_anfang" Content="Fortfahren" HorizontalAlignment="Left" Height="26" Margin="450,443,0,0" VerticalAlignment="Top" Width="116" Click="Button_anfang_Click" Background="#FF00DBC5" BorderBrush="Black" FontSize="17"/>
-                    <Label x:Name="Lable_Fortfahren" Content="Drücken Sie auf den Knopf &quot;Fortfahren&quot;" HorizontalAlignment="Left" Margin="321,182,0,0" VerticalAlignment="Top" Height="39" Width="360" FontSize="20" Background="Black" BorderBrush="Black" Foreground="White"/>
+        <TabControl x:Name="TabControl1" HorizontalAlignment="Left" Height="729" Margin="-599,0,0,0" VerticalAlignment="Top" Width="1382">
+            <TabItem x:Name="TabItem_Anmelden_Reg" Header="Anmelden/registrieren" FontSize="17" Background="#FF00FFE8" BorderBrush="Black">
+                <Grid Margin="0,-8,-12.667,-13.333">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF001DCA" Offset="1"/>
+                            <GradientStop Color="#FF00FFE8"/>
+                            <GradientStop Color="#FF00F8E7" Offset="0.333"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <TextBox x:Name="TextBox_Reg_Vorname" HorizontalAlignment="Left" Height="32" Margin="237,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" FontSize="20"/>
+                    <PasswordBox x:Name="PasswortBox_Reg_Passwort" HorizontalAlignment="Left" Height="32
+                                 " Margin="237,237,0,0" VerticalAlignment="Top" Width="251" FontSize="20"/>
+                    <PasswordBox x:Name="PasswortBox_Reg_Passwort_Wiederholen" HorizontalAlignment="Left" Height="32" Margin="237,329,0,0" VerticalAlignment="Top" Width="251" FontSize="20"/>
+                    <Label x:Name="Lable_Reg" Content="Registrieren " HorizontalAlignment="Left" Height="61" Margin="191,41,0,0" VerticalAlignment="Top" Width="192" FontSize="35" Foreground="Black"/>
+                    <Label x:Name="Lable_Anmelden" Content="Anmelden" HorizontalAlignment="Left" Height="51" Margin="1015,41,0,0" VerticalAlignment="Top" Width="166" FontSize="35" Foreground="Black"/>
+                    <PasswordBox x:Name="PasswortBox_Passwort" HorizontalAlignment="Left" Height="31" Margin="956,275,0,0" VerticalAlignment="Top" Width="255" FontSize="20"/>
+                    <Button x:Name="Button_Registrieren" Content="Registrieren" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Margin="272,441,0,0" Click="Button_Registrieren_Click" Foreground="White" Background="Black" FontSize="20" BorderBrush="Black" Height="40"/>
+                    <Button x:Name="Button_Anmelden" Content="Anmelden" HorizontalAlignment="Left" VerticalAlignment="Top" Width="147" Margin="1015,355,0,0" Click="Button_Anmelden_Click" Foreground="White" Background="Black" FontSize="20" BorderBrush="Black" Height="33"/>
+                    <Label x:Name="Lable_Vorname" Content="Vorname:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="63,143,0,0" Foreground="Black" FontSize="20"/>
+                    <Label x:Name="Lable_PW" Content="Passwort:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="63,237,0,0" Foreground="Black" FontSize="20"/>
+                    <Label x:Name="Lable_Anmelden_PW" Content="Passwort:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="795,269,0,0" Foreground="Black" FontSize="20"/>
+                    <Label x:Name="Lable_PW_WH" Content="Passwort wiederholen:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,328,0,0" Foreground="Black" FontSize="20" Width="209" Height="33"/>
+                    <Button x:Name="Button_anfang" Content="Fortfahren" HorizontalAlignment="Left" Height="34" Margin="602,355,0,0" VerticalAlignment="Top" Width="136" Click="Button_anfang_Click" Background="Black" BorderBrush="Black" FontSize="20" Foreground="White"/>
+                    <Label x:Name="Lable_Fortfahren" Content="Drücken Sie auf den Knopf &quot;Fortfahren&quot;" HorizontalAlignment="Left" Margin="440,256,0,0" VerticalAlignment="Top" Height="50" Width="447" FontSize="25" Background="Black" BorderBrush="Black" Foreground="White"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabItem_PW_hinzufügen_löschen" Header="Passwort hinzufügen/löschen" Background="#FF00A898">
-                <Grid Background="#FF494949" Margin="0,-1,-10.333,-27.667">
-                    <Label Content="Passwörter speichern und löschen " HorizontalAlignment="Left" Margin="220,23,0,0" VerticalAlignment="Top" FontSize="30" Foreground="White"/>
-                    <ListBox x:Name="ListBox_Ausgeben" HorizontalAlignment="Left" Height="368" Margin="10,101,0,0" VerticalAlignment="Top" Width="693"/>
-                    <Label Content="Passwort hinzufügen" HorizontalAlignment="Left" Height="37" Margin="804,107,0,0" VerticalAlignment="Top" Width="193" FontSize="20" Foreground="White"/>
-                    <Label Content="Name der Webseite:" HorizontalAlignment="Left" Height="31" Margin="714,170,0,0" VerticalAlignment="Top" Width="144" FontSize="15" Foreground="White"/>
-                    <Label Content="Passwort:" HorizontalAlignment="Left" Height="31" Margin="714,242,0,0" VerticalAlignment="Top" Width="129" FontSize="17" Foreground="White"/>
-                    <Label x:Name="Username_" Content="Username:" HorizontalAlignment="Left" Height="31" Margin="714,206,0,0" VerticalAlignment="Top" Width="129" FontSize="17" Foreground="White"/>
-                    <TextBox x:Name="TextBox_Webseite_hinzufügen" HorizontalAlignment="Left" Height="25" Margin="863,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                    <TextBox x:Name="TextBox_User_Webseite_hinzufügen" HorizontalAlignment="Left" Height="25" Margin="863,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
-                    <PasswordBox x:Name="Passwort_hizufügen_" HorizontalAlignment="Left" Height="25" Margin="863,251,0,0" VerticalAlignment="Top" Width="177"/>
-                    <PasswordBox x:Name="Passwort_hizufügen__WH" HorizontalAlignment="Left" Height="25" Margin="863,290,0,0" VerticalAlignment="Top" Width="177"/>
-                    <Button x:Name="Button_PW_speichern" Content="Speichern" HorizontalAlignment="Left" Height="24" Margin="863,333,0,0" VerticalAlignment="Top" Width="88" Click="Button_PW_speichern_Click" FontSize="13" Background="#FF00FF24" BorderBrush="Black"/>
-                    <Label Content="Passwort löschen" HorizontalAlignment="Left" Height="38" Margin="825,379,0,0" VerticalAlignment="Top" Width="160" FontSize="20" Foreground="White"/>
-                    <Label Content="Bitte markieren Sie das zu Löschende Passwort&#xA;und drücken Sie auf &quot;Löschen&quot;." HorizontalAlignment="Left" Margin="772,422,0,0" VerticalAlignment="Top" Height="54" Width="255" FontSize="15" Foreground="White"/>
-                    <Button x:Name="Button_löschen" Content="Löschen" HorizontalAlignment="Left" Height="27" Margin="863,487,0,0" VerticalAlignment="Top" Width="88" Click="Button_löschen_Click" FontSize="13" Background="Red" BorderBrush="Black"/>
-                    <Button x:Name="Button_PW_laden" Content=" Speichern " HorizontalAlignment="Left" Height="27" Margin="10,487,0,0" VerticalAlignment="Top" Width="73" Click="Button_PW_laden_Click" Background="#FF00DBC5" FontSize="13" BorderBrush="Black"/>
-                    <Label Content="Passwort&#xD;&#xA;wiederholen:" HorizontalAlignment="Left" Height="53" Margin="714,278,0,0" VerticalAlignment="Top" Width="129" FontSize="17" Foreground="White"/>
-                    <Button x:Name="Button_abmelden1_Copy" Content="Abmelden" HorizontalAlignment="Left" Height="28" Margin="947,10,0,0" VerticalAlignment="Top" Width="89" Background="Red" Click="Button_abmelden_Click" FontSize="15" BorderBrush="Black"/>
-                    <Button x:Name="Button_PW_text_einblenden" Content="Passwort Text einblenden " HorizontalAlignment="Left" Height="27" Margin="551,487,0,0" VerticalAlignment="Top" Width="152" Background="#FF005C53" FontSize="13" BorderBrush="White" Foreground="White" Click="Button_PW_text_einblenden_Click"/>
-                    <Label x:Name="Lable_Gespeichert" Content="Gespeichert" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top"/>
+            <TabItem x:Name="TabItem_PW_hinzufügen_löschen" Header="Passwort hinzufügen/löschen" Background="#FF00FFE8" FontSize="17" BorderBrush="Black">
+                <Grid Margin="0,-1,-10.333,-27.667">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF001DCA" Offset="1"/>
+                            <GradientStop Color="#FF00FFE8"/>
+                            <GradientStop Color="#FF00F8E7" Offset="0.333"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Label Content="Passwörter speichern und löschen " HorizontalAlignment="Left" Margin="410,12,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black"/>
+                    <ListBox x:Name="ListBox_Ausgeben" HorizontalAlignment="Left" Height="497" Margin="10,101,0,0" VerticalAlignment="Top" Width="753" FontSize="17"/>
+                    <Label Content="Passwort hinzufügen" HorizontalAlignment="Left" Height="44" Margin="975,108,0,0" VerticalAlignment="Top" Width="238" FontSize="25" Foreground="Black"/>
+                    <Label Content="Name der Webseite:" HorizontalAlignment="Left" Height="36" Margin="792,172,0,0" VerticalAlignment="Top" Width="200" FontSize="20" Foreground="Black"/>
+                    <Label Content="Passwort:" HorizontalAlignment="Left" Height="36" Margin="792,282,0,0" VerticalAlignment="Top" Width="95" FontSize="20" Foreground="Black"/>
+                    <Label x:Name="Username_" Content="Username:" HorizontalAlignment="Left" Height="36" Margin="792,224,0,0" VerticalAlignment="Top" Width="108" FontSize="20" Foreground="Black"/>
+                    <TextBox x:Name="TextBox_Webseite_hinzufügen" HorizontalAlignment="Left" Height="31" Margin="1070,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="239" FontSize="17"/>
+                    <TextBox x:Name="TextBox_User_Webseite_hinzufügen" HorizontalAlignment="Left" Height="31
+                             " Margin="1070,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="239" FontSize="17"/>
+                    <PasswordBox x:Name="Passwort_hizufügen_" HorizontalAlignment="Left" Height="31
+                                 " Margin="1070,285,0,0" VerticalAlignment="Top" Width="239" FontSize="17"/>
+                    <PasswordBox x:Name="Passwort_hizufügen__WH" HorizontalAlignment="Left" Height="31" Margin="1070,340,0,0" VerticalAlignment="Top" Width="239" FontSize="17"/>
+                    <Button x:Name="Button_PW_speichern" Content="Speichern" HorizontalAlignment="Left" Height="41" Margin="1070,403,0,0" VerticalAlignment="Top" Width="109" Click="Button_PW_speichern_Click" FontSize="20" Background="Black" BorderBrush="Black" Foreground="White"/>
+                    <Label Content="Passwort löschen" HorizontalAlignment="Left" Height="38" Margin="1044,487,0,0" VerticalAlignment="Top" Width="202" FontSize="25" Foreground="Black"/>
+                    <Label Content="Bitte markieren Sie das zu Löschende Passwort&#xA;und drücken Sie auf &quot;Löschen&quot;." HorizontalAlignment="Left" Margin="929,539,0,0" VerticalAlignment="Top" Height="59" Width="423" FontSize="20" Foreground="Black"/>
+                    <Button x:Name="Button_löschen" Content="Löschen" HorizontalAlignment="Left" Height="38" Margin="1070,627,0,0" VerticalAlignment="Top" Width="109" Click="Button_löschen_Click" FontSize="20" Background="Red" BorderBrush="Black"/>
+                    <Button x:Name="Button_PW_laden" Content=" Speichern " HorizontalAlignment="Left" Height="38" Margin="10,627,0,0" VerticalAlignment="Top" Width="116" Click="Button_PW_laden_Click" Background="Black" FontSize="20" BorderBrush="Black" Foreground="White"/>
+                    <Label Content="Passwort wiederholen:" HorizontalAlignment="Left" Height="36" Margin="792,335,0,0" VerticalAlignment="Top" Width="207" FontSize="20" Foreground="Black"/>
+                    <Button x:Name="Button_abmelden1_Copy" Content="Abmelden" HorizontalAlignment="Left" Height="41" Margin="1234,12,0,0" VerticalAlignment="Top" Width="131" Background="Red" Click="Button_abmelden_Click" FontSize="20" BorderBrush="Black"/>
+                    <Button x:Name="Button_PW_text_einblenden" Content="Passwort Text einblenden " HorizontalAlignment="Left" Height="38" Margin="521,627,0,0" VerticalAlignment="Top" Width="242" Background="Black" FontSize="20" BorderBrush="Black" Foreground="White" Click="Button_PW_text_einblenden_Click"/>
+                    <Label x:Name="Lable_Gespeichert" Content="Gespeichert" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="41" Width="104" FontSize="17"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabItem_PW_generieren" Header="Passwort generieren" Background="#FF005C53" Margin="-2.333,-2,-2,0" BorderBrush="#FF005C53" Height="22" VerticalAlignment="Bottom">
-                <Grid Background="#FF494949" Margin="0,0,0.667,0.333">
-                    <Button x:Name="Button_abmelden1" Content="Abmelden" HorizontalAlignment="Left" Height="28" Margin="947,10,0,0" VerticalAlignment="Top" Width="89" Background="Red" Click="Button_abmelden_Click" FontSize="15" BorderBrush="Black"/>
-                    <Label Content="Passwörter generieren " HorizontalAlignment="Left" Margin="357,25,0,0" VerticalAlignment="Top" FontSize="30" Foreground="White" RenderTransformOrigin="0.849,0.431"/>
-                    <Label Content="Hier könne Sie Passwörter generieren lassen ..." HorizontalAlignment="Left" Margin="33,95,0,0" VerticalAlignment="Top" FontSize="20" Foreground="White"/>
-                    <Button x:Name="Button_PW_generieren" Content="Generieren" HorizontalAlignment="Left" Height="32" Margin="587,263,0,0" VerticalAlignment="Top" Width="104" Click="Button_PW_generieren_Click" FontSize="17" Background="#FF2AFF00" BorderBrush="Black"/>
+            <TabItem x:Name="TabItem_PW_generieren" Header="Passwort generieren" Background="#FF00FFE8" Margin="-2.333,0,0.667,0" BorderBrush="Black" Height="30" VerticalAlignment="Bottom" FontSize="17">
+                <Grid Margin="0,0,0.667,0.333">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF001DCA" Offset="1"/>
+                            <GradientStop Color="#FF00FFE8"/>
+                            <GradientStop Color="#FF00F8E7" Offset="0.333"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Button x:Name="Button_abmelden1" Content="Abmelden" HorizontalAlignment="Left" Height="36" Margin="1241,10,0,0" VerticalAlignment="Top" Width="124" Background="Red" Click="Button_abmelden_Click" FontSize="20" BorderBrush="Black"/>
+                    <Label Content="Passwörter generieren " HorizontalAlignment="Left" Margin="357,25,0,0" VerticalAlignment="Top" FontSize="30" Foreground="Black" RenderTransformOrigin="0.849,0.431"/>
+                    <Label Content="Hier könne Sie Passwörter generieren lassen ..." HorizontalAlignment="Left" Margin="33,95,0,0" VerticalAlignment="Top" FontSize="20" Foreground="Black"/>
+                    <Button x:Name="Button_PW_generieren" Content="Generieren" HorizontalAlignment="Left" Height="32" Margin="917,270,0,0" VerticalAlignment="Top" Width="104" Click="Button_PW_generieren_Click" FontSize="17" Background="Black" BorderBrush="Black" Foreground="White"/>
                     <Label x:Name="Lable_Ausgabe" Content="" HorizontalAlignment="Left" Height="45
-                           " Margin="586,185,0,0" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.5,0.5" FontSize="30" Background="White">
+                           " Margin="853,182,0,0" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.5,0.5" FontSize="30" Background="White">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -66,42 +90,55 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Button x:Name="Button_Speichern" Content="In Zwischenablage speichern" HorizontalAlignment="Left" Height="32" Margin="730,263,0,0" VerticalAlignment="Top" Width="229" Click="Button_Speichern_Click" FontSize="17" Background="#FF00FFF7" BorderBrush="Black"/>
-                    <Label Content="Wie lange soll das Passwort sein:" HorizontalAlignment="Left" Height="55" Margin="33,201,0,0" VerticalAlignment="Top" Width="255" FontSize="17" Foreground="White"/>
-                    <TextBox x:Name="TextBox_länge_PW" HorizontalAlignment="Left" Height="34" Margin="405,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" FontSize="17"/>
-                    <Label Content="Sollen Großbuchstaben verwendet werden ?" HorizontalAlignment="Left" Height="58" Margin="33,263,0,0" VerticalAlignment="Top" Width="346" FontSize="17" Foreground="White"/>
-                    <Label Content="Sollen Kleinbuchstaben verwendet werden ?" HorizontalAlignment="Left" Height="51" Margin="33,329,0,0" VerticalAlignment="Top" Width="346" FontSize="17" Foreground="White"/>
-                    <Label Content="Sollen Ziffern verwendet werden ?" HorizontalAlignment="Left" Height="58" Margin="33,388,0,0" VerticalAlignment="Top" Width="275" FontSize="17" Foreground="White"/>
-                    <Label Content="Sollen Sonderzeichen verwendet werden ?" HorizontalAlignment="Left" Height="55" Margin="33,453,0,0" VerticalAlignment="Top" Width="336" FontSize="17" Foreground="White"/>
-                    <WrapPanel HorizontalAlignment="Left" Height="25" Margin="389,336,0,0" VerticalAlignment="Top" Width="107" Background="Black">
-                        <RadioButton x:Name="Radio_Kleinbuchstaben_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Kleinbuchstaben_Ja_Checked" />
-                        <RadioButton x:Name="Radio_Kleinbuchstaben_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="17" Foreground="White" Checked="Radio_Kleinbuchstaben_Nein_Checked" />
+                    <Button x:Name="Button_Speichern" Content="In Zwischenablage speichern" HorizontalAlignment="Left" Height="32" Margin="1060,270,0,0" VerticalAlignment="Top" Width="229" Click="Button_Speichern_Click" FontSize="17" Background="Black" BorderBrush="Black" Foreground="White"/>
+                    <Label Content="Wie lange soll das Passwort sein:" HorizontalAlignment="Left" Height="45" Margin="33,201,0,0" VerticalAlignment="Top" Width="304" FontSize="20" Foreground="Black"/>
+                    <TextBox x:Name="TextBox_länge_PW" HorizontalAlignment="Left" Height="34" Margin="405,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" FontSize="20"/>
+                    <Label Content="Sollen Großbuchstaben verwendet werden ?" HorizontalAlignment="Left" Height="39" Margin="33,263,0,0" VerticalAlignment="Top" Width="417" FontSize="20" Foreground="Black"/>
+                    <Label Content="Sollen Kleinbuchstaben verwendet werden ?" HorizontalAlignment="Left" Height="38" Margin="33,329,0,0" VerticalAlignment="Top" Width="407" FontSize="20" Foreground="Black"/>
+                    <Label Content="Sollen Ziffern verwendet werden ?" HorizontalAlignment="Left" Height="38" Margin="33,388,0,0" VerticalAlignment="Top" Width="317" FontSize="20" Foreground="Black"/>
+                    <Label Content="Sollen Sonderzeichen verwendet werden ?" HorizontalAlignment="Left" Height="40" Margin="33,453,0,0" VerticalAlignment="Top" Width="390" FontSize="20" Foreground="Black"/>
+                    <WrapPanel HorizontalAlignment="Left" Height="25" Margin="512,336,0,0" VerticalAlignment="Top" Width="107">
+                        <RadioButton x:Name="Radio_Kleinbuchstaben_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="20" Foreground="Black" Checked="Radio_Kleinbuchstaben_Ja_Checked" />
+                        <RadioButton x:Name="Radio_Kleinbuchstaben_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="20" Foreground="Black" Checked="Radio_Kleinbuchstaben_Nein_Checked" />
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Left" Height="28" Margin="389,395,0,0" VerticalAlignment="Top" Width="107" Background="Black">
-                        <RadioButton x:Name="Radio_Ziffern_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Ziffern_Ja_Checked"  />
-                        <RadioButton x:Name="Radio_Ziffern_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="17" Foreground="White" Checked="Radio_Ziffern_Nein_Checked" />
+                    <WrapPanel HorizontalAlignment="Left" Height="28" Margin="512,398,0,0" VerticalAlignment="Top" Width="107">
+                        <RadioButton x:Name="Radio_Ziffern_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="20" Foreground="Black" Checked="Radio_Ziffern_Ja_Checked"  />
+                        <RadioButton x:Name="Radio_Ziffern_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="20" Foreground="Black" Checked="Radio_Ziffern_Nein_Checked" />
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Left" Height="27" Margin="389,460,0,0" VerticalAlignment="Top" Width="107" Background="Black">
-                        <RadioButton x:Name="Radio_Sonderzeichen_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Sonderzeichen_Ja_Checked"   />
-                        <RadioButton x:Name="Radio_Sonderzeichen_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="17" Foreground="White" Checked="Radio_Sonderzeichen_Nein_Checked"  />
+                    <WrapPanel HorizontalAlignment="Left" Height="27" Margin="512,460,0,0" VerticalAlignment="Top" Width="107">
+                        <RadioButton x:Name="Radio_Sonderzeichen_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="20" Foreground="Black" Checked="Radio_Sonderzeichen_Ja_Checked"   />
+                        <RadioButton x:Name="Radio_Sonderzeichen_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="61"  FontSize="20" Foreground="Black" Checked="Radio_Sonderzeichen_Nein_Checked"  />
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Left" Height="25" Margin="389,270,0,0" VerticalAlignment="Top" Width="107" Background="Black">
-                        <RadioButton x:Name="Radio_Großbuchstaben_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="17" Foreground="White" Checked="Radio_Großbuchstaben_Ja_Checked"/>
-                        <RadioButton x:Name="Radio_Großbuchstaben_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="56"  FontSize="17" Foreground="White" Checked="Radio_Großbuchstaben_Nein_Checked"/>
+                    <WrapPanel HorizontalAlignment="Left" Height="25" Margin="512,270,0,0" VerticalAlignment="Top" Width="107">
+                        <RadioButton x:Name="Radio_Großbuchstaben_Ja" Content="Ja" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="42"  FontSize="20" Foreground="Black" Checked="Radio_Großbuchstaben_Ja_Checked" Background="White"/>
+                        <RadioButton x:Name="Radio_Großbuchstaben_Nein" Content="Nein" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="63"  FontSize="20" Foreground="Black" Checked="Radio_Großbuchstaben_Nein_Checked"/>
                     </WrapPanel>
 
                 </Grid>
             </TabItem>
-            <TabItem x:Name="TabItem_Acc_löschen" Header="Account löschen " Background="#FF009C8C" Margin="-2,-2,-2,0">
-                <Grid Background="#FF494949" Margin="0,-3,-12.333,-18.667">
-                    <Label Content="Account löschen " HorizontalAlignment="Left" Margin="396,35,0,0" VerticalAlignment="Top" FontSize="30" Foreground="White"/>
-                    <Label Content="Hier können Sie Ihren Account löschen.&#xA;Um Ihren Accout zu löschen, müssen Sie bitte die Felder unten ausfüllen " HorizontalAlignment="Left" Height="59" Margin="58,96,0,0" VerticalAlignment="Top" Width="551" FontSize="17" Foreground="White"/>
-                    <Label Content="Passwort:" HorizontalAlignment="Left" Height="32" Margin="58,225,0,0" VerticalAlignment="Top" Width="84" FontSize="17" Foreground="White"/>
-                    <PasswordBox x:Name="PasswordBox_Acc_löschen" HorizontalAlignment="Left" Height="25" Margin="276,232,0,0" VerticalAlignment="Top" Width="199"/>
-                    <Label Content="Passwort wiederholen" HorizontalAlignment="Left" Height="32" Margin="58,297,0,0" VerticalAlignment="Top" Width="180" FontSize="17" Foreground="White"/>
-                    <PasswordBox x:Name="PasswordBox_Acc_löschen_WH" HorizontalAlignment="Left" Height="25" Margin="276,304,0,0" VerticalAlignment="Top" Width="199"/>
-                    <Button x:Name="Button_Acc_löschen" Content="Löschen" HorizontalAlignment="Left" Height="30" Margin="319,397,0,0" VerticalAlignment="Top" Width="124" Background="Red" FontWeight="Bold" Click="Button_Acc_löschen_Click" BorderBrush="Black"/>
-                    <Button x:Name="Button_abmelden1_Copy1" Content="Abmelden" HorizontalAlignment="Left" Height="28" Margin="947,10,0,0" VerticalAlignment="Top" Width="89" Background="Red" Click="Button_abmelden_Click" FontSize="15" BorderBrush="Black"/>
+            <TabItem x:Name="TabItem_Acc_löschen" Header="Account löschen " Background="#FF00FFE8" Margin="-1.667,0,-2.333,0" FontSize="17" BorderBrush="Black">
+                <Grid Margin="0,-3,-12.333,-18.667">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="151*"/>
+                        <ColumnDefinition Width="543*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF001DCA" Offset="1"/>
+                            <GradientStop Color="#FF00FFE8"/>
+                            <GradientStop Color="#FF00F8E7" Offset="0.333"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <Label Content="Account löschen " HorizontalAlignment="Left" Margin="221.004,34,0,0" VerticalAlignment="Top" FontSize="35" Foreground="Black" Grid.Column="1"/>
+                    <Label Content="Hier können Sie Ihren Account löschen.&#xA;Um Ihren Accout zu löschen, müssen Sie bitte die Felder unten ausfüllen " HorizontalAlignment="Left" Height="73" Margin="58,128,0,0" VerticalAlignment="Top" Width="749" FontSize="23" Foreground="Black" Grid.ColumnSpan="2"/>
+                    <Label Content="Passwort:" HorizontalAlignment="Left" Height="32" Margin="64,254,0,0" VerticalAlignment="Top" Width="97" FontSize="20" Foreground="Black"/>
+                    <PasswordBox x:Name="PasswordBox_Acc_löschen" HorizontalAlignment="Left" Height="31
+                                 " Margin="297,255,0,0" VerticalAlignment="Top" Width="263" FontSize="17" Grid.ColumnSpan="2"/>
+                    <Label Content="Passwort wiederholen:" HorizontalAlignment="Left" Height="37" Margin="64,321,0,0" VerticalAlignment="Top" Width="213" FontSize="20" Foreground="Black"/>
+                    <PasswordBox x:Name="PasswordBox_Acc_löschen_WH" HorizontalAlignment="Left" Height="31
+                                 " Margin="297,321,0,0" VerticalAlignment="Top" Width="263" Grid.ColumnSpan="2"/>
+                    <Button x:Name="Button_Acc_löschen" Content="Löschen" HorizontalAlignment="Left" Height="40" Margin="60.004,409,0,0" VerticalAlignment="Top" Width="139" Background="Red" FontWeight="Bold" Click="Button_Acc_löschen_Click" BorderBrush="Black" FontSize="20" Grid.Column="1"/>
+                    <Button x:Name="Button_abmelden1_Copy1" Content="Abmelden" HorizontalAlignment="Left" Height="34" Margin="945.004,10,0,0" VerticalAlignment="Top" Width="113" Background="Red" Click="Button_abmelden_Click" FontSize="20" BorderBrush="Black" Grid.Column="1"/>
                 </Grid>
             </TabItem>
         </TabControl>
