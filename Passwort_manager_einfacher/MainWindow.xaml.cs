@@ -60,7 +60,6 @@ namespace Passwort_manager_einfacher
 
             InitializeComponent();
             //Alle Felder ausblenden
-            
             TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
             PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
             PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
@@ -86,47 +85,63 @@ namespace Passwort_manager_einfacher
             
 
 
-
-
-
-
-
         }
 
 //_________________________ Methoden Felder clearen____________________________________________________
 
-        public bool  FelderRegClearen()
+        public void FelderRegClearen()
         {
             
             TextBox_Reg_Vorname.Clear();
             PasswortBox_Reg_Passwort.Clear();
             PasswortBox_Reg_Passwort_Wiederholen.Clear();
-            return true;
+        
         }
 
 
-        public bool FelderAnmeldenClearen()
+        public void FelderAnmeldenClearen()
         {
             PasswortBox_Passwort.Clear();
-            return true;
                 
         }
 
-        public bool FelderPWHinzufügenClearen()
+        public void FelderPWHinzufügenClearen()
         {
             TextBox_User_Webseite_hinzufügen.Clear();
             TextBox_Webseite_hinzufügen.Clear();
             Passwort_hizufügen_.Clear();
             Passwort_hizufügen__WH.Clear();
-            return true;
+           
         }
 
 
-        public bool FelderAccLöschen()
+        public void FelderAccLöschen()
         {
             PasswordBox_Acc_löschen.Clear();
             PasswordBox_Acc_löschen_WH.Clear();
-            return true;
+        }
+
+        //_________________________________________________________________________________________________
+
+        public void Reg_Ausblenden()
+        {
+            Lable_Reg.Visibility = Visibility.Hidden;
+            Lable_Vorname.Visibility = Visibility.Hidden;
+            Lable_PW.Visibility = Visibility.Hidden;
+            Lable_PW_WH.Visibility = Visibility.Hidden;
+            Button_Registrieren.Visibility = Visibility.Hidden;
+            TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
+            PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
+            PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
+
+        }
+
+        public void login_einblenden()
+        {
+            Lable_Anmelden.Visibility = Visibility.Visible;
+            Lable_Anmelden_PW.Visibility = Visibility.Visible;
+            PasswortBox_Passwort.Visibility = Visibility.Visible;
+            Button_Anmelden.Visibility = Visibility.Visible;
         }
 
 
@@ -198,36 +213,7 @@ namespace Passwort_manager_einfacher
 
         private void Button_Registrieren_Click(object sender, RoutedEventArgs e)
         {
-            
-            //Try catch wurde entfernt
-            
-                /*
-                //Schauen ob Datei vorhanden und überprüfen ob registriert
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    //User lesen wenn vorhanden
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        User U1 = JsonConvert.DeserializeObject<User>(line);
-                        aktiv = U1;
-                        erstesMalAnmelden = aktiv.ErstesMalAnmelden;
-                    }
-                    //Wenn User vorhanden ausgeben das bereits registriert
-                    if (erstesMalAnmelden == false)
-                    {
-                        MessageBox.Show("Sie sind bereits registriert.");
-                        FelderRegClearen();
-                    }
-                }
-                
-
-                Lable_Anmelden.Visibility = Visibility.Visible;
-                PasswortBox_Passwort.Visibility = Visibility.Visible;
-                Button_Anmelden.Visibility = Visibility.Visible;
-                */
-            
-            
+        
 
             //User erstellen
             if (TextBox_Reg_Vorname.Text != "")
@@ -239,22 +225,12 @@ namespace Passwort_manager_einfacher
                         if (PasswortBox_Reg_Passwort.Password == PasswortBox_Reg_Passwort_Wiederholen.Password)
                         {
                             //Lables Reg Ausblenden
-                            Lable_Reg.Visibility = Visibility.Hidden;
-                            Lable_Vorname.Visibility = Visibility.Hidden;
-                            Lable_PW.Visibility = Visibility.Hidden;
-                            Lable_PW_WH.Visibility = Visibility.Hidden;
-                            Button_Registrieren.Visibility = Visibility.Hidden;
-                            TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
-                            PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
-                            PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
+                            Reg_Ausblenden();
 
                             //lable anmelden einblenden
-                            Lable_Anmelden.Visibility = Visibility.Visible;
-                            Lable_Anmelden_PW.Visibility = Visibility.Visible;
-                            PasswortBox_Passwort.Visibility = Visibility.Visible;
-                            Button_Anmelden.Visibility = Visibility.Visible;
+                            login_einblenden(); 
 
-                            erstesMalAnmelden = true;
+                             erstesMalAnmelden = true;
                             string passwort_verschlüsselt = AesOperation.EncryptString(key, PasswortBox_Reg_Passwort.Password); 
                             MessageBox.Show("Hallo und herzlich willkommen bei Ihrem Passwort Manager");
                             User U1 = new User(TextBox_Reg_Vorname.Text, passwort_verschlüsselt, false);
@@ -374,37 +350,6 @@ namespace Passwort_manager_einfacher
             }
             else
             {
-                //genaueres überprüfen (unnötig)
-                /*
-                //Überprüfen ob Felder leer
-                if (TextBox_Webseite_hinzufügen.Text == "")
-                {
-                    MessageBox.Show("Bitte geben Sie einen Verwendungszweck ein!");
-                    FelderPWHinzufügenClearen();
-                }
-                else if (TextBox_User_Webseite_hinzufügen.Text == "")
-                {
-                    MessageBox.Show("Bitte geben Sie einen Usernamen ein!");
-                    FelderPWHinzufügenClearen();
-                }
-                else if (Passwort_hizufügen_.Password == "")
-                {
-                    MessageBox.Show("Bitte geben Sie ein Passwort ein!");
-                    FelderPWHinzufügenClearen();
-                }
-                else if (TextBox_Webseite_hinzufügen.Text == "")
-                {
-                    if (TextBox_User_Webseite_hinzufügen.Text == "")
-                    {
-                        if (Passwort_hizufügen_.Password == "")
-                        {
-                            MessageBox.Show("Alle Felder sind leer");
-                        }
-                    }
-                }
-                */
-
-
                 if (TextBox_Webseite_hinzufügen.Text == "" || TextBox_User_Webseite_hinzufügen.Text == "" || Passwort_hizufügen_.Password == "" )
                 {
                     MessageBox.Show("Es sind nicht alle Felder ausgefüllt !"); 
@@ -650,31 +595,6 @@ namespace Passwort_manager_einfacher
 
 
 //_________________________________________TAB3___________________________________________________________________________________________________
-
-
-
-        /*
-        private void CheckBox_Kleinbuchstaben_Ja_Checked(object sender, RoutedEventArgs e)
-        {
-            if (angemeldet == true)
-            {
-                
-                if (CheckBox_Kleinbuchstaben_nein.IsChecked == true)
-                {
-                    MessageBox.Show("Sie können nicht beides haben ...!");
-                    
-                   
-                }
-                else
-                    Kleinbuchstaben = true;
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
-           
-        }
-
-        */
-
 
         //------------------------Großbuchstaben----------------------------------------
         private void Radio_Großbuchstaben_Ja_Checked(object sender, RoutedEventArgs e)
