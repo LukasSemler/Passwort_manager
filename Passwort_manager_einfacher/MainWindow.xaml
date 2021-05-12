@@ -63,7 +63,7 @@
                     <Label Content="Passwort wiederholen:" HorizontalAlignment="Left" Height="36" Margin="792,335,0,0" VerticalAlignment="Top" Width="207" FontSize="20" Foreground="Black"/>
                     <Button x:Name="Button_abmelden1_Copy" Content="Abmelden" HorizontalAlignment="Left" Height="41" Margin="1234,12,0,0" VerticalAlignment="Top" Width="131" Background="Red" Click="Button_abmelden_Click" FontSize="20" BorderBrush="Black"/>
                     <Button x:Name="Button_PW_text_einblenden" Content="Passwort Text einblenden " HorizontalAlignment="Left" Height="38" Margin="521,627,0,0" VerticalAlignment="Top" Width="242" Background="Black" FontSize="20" BorderBrush="Black" Foreground="White" Click="Button_PW_text_einblenden_Click"/>
-                    <Label x:Name="Lable_Gespeichert" Content="Gespeichert" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="41" Width="104" FontSize="17"/>
+                    <Label x:Name="Lable_Gespeichert" Content="Gespeichert" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="41" Width="104" FontSize="17" Background="#FF00FF34"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_PW_generieren" Header="Passwort generieren" Background="#FF00FFE8" Margin="-2.333,0,0.667,0" BorderBrush="Black" Height="30" VerticalAlignment="Bottom" FontSize="17">

@@ -20,7 +20,6 @@ namespace Passwort_manager_einfacher
         public User(string vorname, string masterPW, bool erstesMalAnmelden)
         {
             Vorname = vorname;
-            
             MasterPW = masterPW;
             ErstesMalAnmelden = erstesMalAnmelden;
 

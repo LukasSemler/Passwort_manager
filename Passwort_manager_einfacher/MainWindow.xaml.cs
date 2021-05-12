@@ -16,6 +16,7 @@ using Newtonsoft;
 using System.IO;
 using Newtonsoft.Json;
 using System.Drawing;
+using System.Collections.ObjectModel; 
 
 
 namespace Passwort_manager_einfacher
@@ -28,6 +29,9 @@ namespace Passwort_manager_einfacher
 
     public partial class MainWindow : Window
     {
+
+        #region Variablen
+
         bool erstesMalAnmelden = true;
         string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\test.json";
         User aktiv;
@@ -40,54 +44,37 @@ namespace Passwort_manager_einfacher
         string PW_erzeugen;
         int Länge_passwort;
         string passwd;
-        
 
+        
 
 
         string key = "b14ca5898a4e4133bbce2ea2315a1916";
 
 
-        bool gespeichert = true; 
+        bool gespeichert = true;
 
 
-
-
+        #endregion
 
         public MainWindow()
         {
-            
-            
+           
 
             InitializeComponent();
-            //Alle Felder ausblenden
-            TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
-            PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
-            PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
-            Lable_Anmelden.Visibility = Visibility.Hidden;
-            Lable_Anmelden_PW.Visibility = Visibility.Hidden;
-            Lable_PW.Visibility = Visibility.Hidden;
-            Lable_PW_WH.Visibility = Visibility.Hidden;
-            Lable_Reg.Visibility = Visibility.Hidden;
-            PasswortBox_Passwort.Visibility = Visibility.Hidden;
-            Lable_Vorname.Visibility = Visibility.Hidden;
-            Button_Anmelden.Visibility = Visibility.Hidden;
-            Button_Registrieren.Visibility = Visibility.Hidden;
 
-            //TabItem_ausblenden
-            TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
-            TabItem_PW_generieren.Visibility = Visibility.Hidden;
-            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
-
-            //Lable gespeichert auf Grün setzen
-            Lable_Gespeichert.Background = Brushes.Lime;
+            AlleFelderAusblenden();
+            AnfangTabItemAusblenden(); 
+            
 
 
             
+
 
 
         }
 
-//_________________________ Methoden Felder clearen____________________________________________________
+        #region Felder Clearen
+        //_________________________ Methoden Felder clearen____________________________________________________
 
         public void FelderRegClearen()
         {
@@ -121,7 +108,74 @@ namespace Passwort_manager_einfacher
             PasswordBox_Acc_löschen_WH.Clear();
         }
 
-        //_________________________________________________________________________________________________
+
+
+
+        #endregion
+
+        #region Felder ein und Ausblenden
+
+        public void AlleFelderAusblenden()
+        {
+            //Alle Felder ausblenden
+            TextBox_Reg_Vorname.Visibility = Visibility.Hidden;
+            PasswortBox_Reg_Passwort.Visibility = Visibility.Hidden;
+            PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Hidden;
+            Lable_Anmelden.Visibility = Visibility.Hidden;
+            Lable_Anmelden_PW.Visibility = Visibility.Hidden;
+            Lable_PW.Visibility = Visibility.Hidden;
+            Lable_PW_WH.Visibility = Visibility.Hidden;
+            Lable_Reg.Visibility = Visibility.Hidden;
+            PasswortBox_Passwort.Visibility = Visibility.Hidden;
+            Lable_Vorname.Visibility = Visibility.Hidden;
+            Button_Anmelden.Visibility = Visibility.Hidden;
+            Button_Registrieren.Visibility = Visibility.Hidden;
+        }
+
+        public void AnfangTabItemAusblenden()
+        {
+            //TabItem_ausblenden
+            TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
+            TabItem_PW_generieren.Visibility = Visibility.Hidden;
+            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+        }
+
+        public void AnmeldenEinblenden()
+        {
+            //Alles für Anmelden einblenden
+            Lable_Anmelden.Visibility = Visibility.Visible;
+            Lable_Anmelden_PW.Visibility = Visibility.Visible;
+            PasswortBox_Passwort.Visibility = Visibility.Visible;
+            Button_Anmelden.Visibility = Visibility.Visible;
+        }
+
+        public void FortfahrenAusblenden()
+        {
+            //Fortfahren ausblenden
+            Button_anfang.Visibility = Visibility.Hidden;
+            Lable_Fortfahren.Visibility = Visibility.Hidden;
+        }
+
+        public void TabItemsEinblenden()
+        {
+            //Tab Item einblenden
+            TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Visible;
+            TabItem_PW_generieren.Visibility = Visibility.Visible;
+            TabItem_Acc_löschen.Visibility = Visibility.Visible;
+        }
+
+        public void RegistrierenEinblenden()
+        {
+            //Alles fürs Reg einblenden
+            Lable_Reg.Visibility = Visibility.Visible;
+            Lable_Vorname.Visibility = Visibility.Visible;
+            Lable_PW.Visibility = Visibility.Visible;
+            Lable_PW_WH.Visibility = Visibility.Visible;
+            Button_Registrieren.Visibility = Visibility.Visible;
+            TextBox_Reg_Vorname.Visibility = Visibility.Visible;
+            PasswortBox_Reg_Passwort.Visibility = Visibility.Visible;
+            PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Visible;
+        }
 
         public void Reg_Ausblenden()
         {
@@ -144,12 +198,37 @@ namespace Passwort_manager_einfacher
             Button_Anmelden.Visibility = Visibility.Visible;
         }
 
+        public void anmeldenAusblenden()
+        {
+            //Anmelden Labels ausblenden
+            Lable_Anmelden.Visibility = Visibility.Hidden;
+            Lable_Anmelden_PW.Visibility = Visibility.Hidden;
+            PasswortBox_Passwort.Visibility = Visibility.Hidden;
+            Button_Anmelden.Visibility = Visibility.Hidden;
+        }
 
+        public void andereTabItemAusblenden()
+        {
+            //Andere Tab Item ausblenden
+            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+            TabItem_PW_generieren.Visibility = Visibility.Hidden;
+            TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
+        }
+
+        public void TabItemsAusblenden()
+        {
+            //Andere Tab Item ausblenden
+            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+            TabItem_PW_generieren.Visibility = Visibility.Hidden;
+            TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
+        }
+
+
+        #endregion
+
+        #region TAB1
 
         //_______________________________TAB1_____________________________________________________________________________________
-
-
-
 
 
         private void Button_anfang_Click(object sender, RoutedEventArgs e)
@@ -171,17 +250,8 @@ namespace Passwort_manager_einfacher
                     //Wenn User vorhanden ausgeben das bereits registriert
                     if (erstesMalAnmelden == false)
                     {
-                        //Alles für Anmelden einblenden
-                        Lable_Anmelden.Visibility = Visibility.Visible;
-                        Lable_Anmelden_PW.Visibility = Visibility.Visible;
-                        PasswortBox_Passwort.Visibility = Visibility.Visible;
-                        Button_Anmelden.Visibility = Visibility.Visible;
-
-                        //Fortfahren ausblenden
-                        Button_anfang.Visibility = Visibility.Hidden;
-                        Lable_Fortfahren.Visibility = Visibility.Hidden;
-
-
+                        AnmeldenEinblenden();
+                        FortfahrenAusblenden(); 
 
                     }
                 }
@@ -190,20 +260,9 @@ namespace Passwort_manager_einfacher
             }//User ist nicht registriert
             catch
             {
-                //Fortfahren Button und lable Ausblenden
-                Button_anfang.Visibility = Visibility.Hidden;
-                Lable_Fortfahren.Visibility = Visibility.Hidden;
+                FortfahrenAusblenden();
 
-
-                //Alles fürs Reg einblenden
-                Lable_Reg.Visibility = Visibility.Visible;
-                Lable_Vorname.Visibility = Visibility.Visible;
-                Lable_PW.Visibility = Visibility.Visible;
-                Lable_PW_WH.Visibility = Visibility.Visible;
-                Button_Registrieren.Visibility = Visibility.Visible;
-                TextBox_Reg_Vorname.Visibility = Visibility.Visible;
-                PasswortBox_Reg_Passwort.Visibility = Visibility.Visible;
-                PasswortBox_Reg_Passwort_Wiederholen.Visibility = Visibility.Visible;
+                RegistrierenEinblenden(); 
 
             }
         }
@@ -230,7 +289,7 @@ namespace Passwort_manager_einfacher
                             //lable anmelden einblenden
                             login_einblenden(); 
 
-                             erstesMalAnmelden = true;
+                            erstesMalAnmelden = true;
                             string passwort_verschlüsselt = AesOperation.EncryptString(key, PasswortBox_Reg_Passwort.Password); 
                             MessageBox.Show("Hallo und herzlich willkommen bei Ihrem Passwort Manager");
                             User U1 = new User(TextBox_Reg_Vorname.Text, passwort_verschlüsselt, false);
@@ -264,8 +323,6 @@ namespace Passwort_manager_einfacher
 
         }
 
-//----------------------------------------------------------------------------------------------------------------------------------------
-
         private void Button_Anmelden_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -287,29 +344,25 @@ namespace Passwort_manager_einfacher
                     {
                         MessageBox.Show($"Willkommen {aktiv.Vorname}");
                         angemeldet = true;
-                        //Tab Item einblenden
-                        TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Visible;
-                        TabItem_PW_generieren.Visibility = Visibility.Visible;
-                        TabItem_Acc_löschen.Visibility = Visibility.Visible;
-                        //Anmelden Labels ausblenden
-                        Lable_Anmelden.Visibility = Visibility.Hidden;
-                        Lable_Anmelden_PW.Visibility = Visibility.Hidden;
-                        PasswortBox_Passwort.Visibility = Visibility.Hidden;
-                        Button_Anmelden.Visibility = Visibility.Hidden;
+                        
+                        TabItemsEinblenden();
+
+                        anmeldenAusblenden(); 
+
                         //TabItem Anmelden Reg Ausblenden
                         TabItem_Anmelden_Reg.Visibility = Visibility.Hidden;
+
                         //Aktives TabItem ändern
                         TabControl1.SelectedItem = TabItem_PW_hinzufügen_löschen;
+
+
                         string verschlüsseltes_PW = AesOperation.EncryptString(key, aktiv.MasterPW);
                         aktiv.MasterPW = verschlüsseltes_PW;
 
 
-                        //Listbox beim Starten befüllen: 
-                        foreach (var item in aktiv.ListePasswörter)
-                        {
-                            ListBox_Ausgeben.Items.Add(item);
 
-                        }
+
+                        ListBox_Ausgeben.ItemsSource = aktiv.ListePasswörter; 
 
 
                     }
@@ -330,10 +383,11 @@ namespace Passwort_manager_einfacher
         }
 
 
+        #endregion
 
+        #region TAB2
 
-
-//_________________________TAB2_________________________________________________________________________________
+        //_________________________TAB2_________________________________________________________________________________
 
 
 
@@ -364,20 +418,13 @@ namespace Passwort_manager_einfacher
                     Passwort P1 = new Passwort(TextBox_Webseite_hinzufügen.Text, TextBox_User_Webseite_hinzufügen.Text, passwort_verschlüsselt); 
                     aktiv.ListePasswörter.Add(P1);
 
+
                     //Gespeichert auf false setzen
                     gespeichert = false;
-                    Lable_Gespeichert.Background = Brushes.Red; 
+                    Lable_Gespeichert.Background = Brushes.Red;
 
 
-
-                    //Listbox Clearen und Passwörter neu einfüllen
-                    ListBox_Ausgeben.Items.Clear(); 
-                    foreach (var item in aktiv.ListePasswörter)
-                    {
-                        ListBox_Ausgeben.Items.Add(item);
-
-                    }
-
+                    ListBox_Ausgeben.ItemsSource = aktiv.ListePasswörter;
 
 
 
@@ -405,7 +452,7 @@ namespace Passwort_manager_einfacher
             if (gespeichert == true)
             {
                 angemeldet = false;
-                ListBox_Ausgeben.Items.Clear();
+                
                 MessageBox.Show("Sie wurden abgemeldet");
                 Lable_Ausgabe.Content = "";
                 TextBox_länge_PW.Clear();
@@ -413,19 +460,13 @@ namespace Passwort_manager_einfacher
                 //TabItem Anmelden Reg einblenden
                 TabItem_Anmelden_Reg.Visibility = Visibility.Visible;
 
-                //Andere Tab Item ausblenden
-                TabItem_Acc_löschen.Visibility = Visibility.Hidden;
-                TabItem_PW_generieren.Visibility = Visibility.Hidden;
-                TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
+                andereTabItemAusblenden(); 
 
                 //Tab item wechseln
                 TabControl1.SelectedItem = TabItem_Anmelden_Reg;
 
-                //Lable anmelden einblenden
-                Lable_Anmelden.Visibility = Visibility.Visible;
-                Lable_Anmelden_PW.Visibility = Visibility.Visible;
-                PasswortBox_Passwort.Visibility = Visibility.Visible;
-                Button_Anmelden.Visibility = Visibility.Visible;
+                AnmeldenEinblenden(); 
+               
 
             }
             else
@@ -447,25 +488,15 @@ namespace Passwort_manager_einfacher
                     //TabItem Anmelden Reg einblenden
                     TabItem_Anmelden_Reg.Visibility = Visibility.Visible;
 
-                    //Andere Tab Item ausblenden
-                    TabItem_Acc_löschen.Visibility = Visibility.Hidden;
-                    TabItem_PW_generieren.Visibility = Visibility.Hidden;
-                    TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
+                    TabItemsAusblenden(); 
 
                     //Tab item wechseln
                     TabControl1.SelectedItem = TabItem_Anmelden_Reg;
 
-                    //Lable anmelden einblenden
-                    Lable_Anmelden.Visibility = Visibility.Visible;
-                    Lable_Anmelden_PW.Visibility = Visibility.Visible;
-                    PasswortBox_Passwort.Visibility = Visibility.Visible;
-                    Button_Anmelden.Visibility = Visibility.Visible;
+                    AnmeldenEinblenden(); 
 
                 }
-                else
-                {
-
-                }
+                
             }
 
         }
@@ -474,79 +505,55 @@ namespace Passwort_manager_einfacher
 
         private void Button_PW_laden_Click(object sender, RoutedEventArgs e)
         {
-            if (angemeldet == true)
+          
+           
+            
+
+            //File löschen
+            File.Delete(path);
+
+            //passwort zuerst entschlüsseln damit es nicht noch einem verschlüsselt wird 
+            string passwort_entschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
+            aktiv.MasterPW = passwort_entschlüsselt; 
+
+            //passwort wieder verschlüsseln
+            string passwort_verschlüsselt = AesOperation.EncryptString(key, aktiv.MasterPW);
+            aktiv.MasterPW = passwort_verschlüsselt; 
+
+
+            //File schreiben
+            string JsonSchreiben = JsonConvert.SerializeObject(aktiv);
+            using (StreamWriter sw = new StreamWriter(path))
             {
-               
-                //Überprüfen ob angemeldet
-                if (angemeldet == true)
-                {
-                    //Listbox löschen um sie danach neu zu befüllen können
-                    ListBox_Ausgeben.Items.Clear(); 
-
-                    //File löschen
-                    File.Delete(path);
-
-                    //passwort zuerst entschlüsseln damit es nicht noch einem verschlüsselt wird 
-                    string passwort_entschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
-                    aktiv.MasterPW = passwort_entschlüsselt; 
-
-                    //passwort wieder verschlüsseln
-                    string passwort_verschlüsselt = AesOperation.EncryptString(key, aktiv.MasterPW);
-                    aktiv.MasterPW = passwort_verschlüsselt; 
-
-
-                    //File schreiben
-                    string JsonSchreiben = JsonConvert.SerializeObject(aktiv);
-                    using (StreamWriter sw = new StreamWriter(path))
-                    {
-                        sw.WriteLine(JsonSchreiben);
-                    }
-
-                    //File lesen
-                    using (StreamReader sr = new StreamReader(path))
-                    {
-                        string line;
-                        while ((line = sr.ReadLine()) != null)
-                        {
-                            User U1 = JsonConvert.DeserializeObject<User>(line);
-                            aktiv = U1;
-                        }
-                    }
-
-                        
-
-                    //Passwörter in ListBox geben
-                    foreach (var item in aktiv.ListePasswörter)
-                    {
-                        ListBox_Ausgeben.Items.Add(item);
-                            
-                    }
-
-                        
-
-
-                    //Gespeichert auf true setzen
-                    gespeichert = true;
-                    Lable_Gespeichert.Background = Brushes.Lime; 
-
-                }
-                else
-                    MessageBox.Show("Bitte melden Sie sich zuerst an!");
-
-                
+                sw.WriteLine(JsonSchreiben);
             }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
+
+            //File lesen
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    User U1 = JsonConvert.DeserializeObject<User>(line);
+                    aktiv = U1;
+                }
+            }
+
+            //Item source Festlegen
+            ListBox_Ausgeben.ItemsSource = aktiv.ListePasswörter;
+
+
+
+
+            //Gespeichert auf true setzen
+            gespeichert = true;
+            Lable_Gespeichert.Background = Brushes.Lime; 
+
             
 
         }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
-
-       
-
-
-        //----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         private void Button_PW_text_einblenden_Click(object sender, RoutedEventArgs e)
@@ -572,29 +579,31 @@ namespace Passwort_manager_einfacher
 
         private void Button_löschen_Click(object sender, RoutedEventArgs e)
         {
-            if (angemeldet == true)
-            {
-                //auswahl treffen zum löschen
-                var zuLöschen = (Passwort)ListBox_Ausgeben.SelectedItem;
+            
+            //auswahl treffen zum löschen
+            var zuLöschen = (Passwort)ListBox_Ausgeben.SelectedItem;
 
-                //Listbox löschen
-                ListBox_Ausgeben.Items.Remove(zuLöschen);
-                //Aus der Liste löschen    
-                aktiv.ListePasswörter.Remove(zuLöschen);
+           
+            //Aus der Liste löschen    
+            aktiv.ListePasswörter.Remove(zuLöschen);
 
-                //Lable auf Rot setzen und geseichert auf false
-                Lable_Gespeichert.Background = Brushes.Red;
-                gespeichert = false; 
+            //Item Source 
+            ListBox_Ausgeben.ItemsSource = aktiv.ListePasswörter;
 
-            }
-            else
-                MessageBox.Show("Bitte melden Sie sich zuerst an!");
+            //Lable auf Rot setzen und geseichert auf false
+            Lable_Gespeichert.Background = Brushes.Red;
+            gespeichert = false; 
+
+           
             
 
         }
 
+        #endregion
 
-//_________________________________________TAB3___________________________________________________________________________________________________
+        #region TAB3
+
+        //_________________________________________TAB3___________________________________________________________________________________________________
 
         //------------------------Großbuchstaben----------------------------------------
         private void Radio_Großbuchstaben_Ja_Checked(object sender, RoutedEventArgs e)
@@ -856,6 +865,9 @@ namespace Passwort_manager_einfacher
 
         }
 
+        #endregion
+
+        #region
 
         //_______________________________________________Tab4__________________________________________________________
 
@@ -925,6 +937,8 @@ namespace Passwort_manager_einfacher
 
         }
 
-        
+        #endregion
+
+
     }
 }
