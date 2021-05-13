@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Passwort_manager_einfacher"
         mc:Ignorable="d"
-        Title="Passwort Manager" Height="766.811" Width="1400.659" Icon="Passwort_logo.jpg">
+        Title="Passwort Manager" Height="766.811" Width="1400.659" Icon="Passwort_logo.jpg" Closing="Passwort_manager_Closing">
     <Grid HorizontalAlignment="Right" Margin="0,0,0.333,-0.333" Width="793">
         <TabControl x:Name="TabControl1" HorizontalAlignment="Left" Height="729" Margin="-599,0,0,0" VerticalAlignment="Top" Width="1382">
             <TabItem x:Name="TabItem_Anmelden_Reg" Header="Anmelden/registrieren" FontSize="17" Background="#FF00FFE8" BorderBrush="Black">
@@ -64,6 +64,7 @@
                     <Button x:Name="Button_abmelden1_Copy" Content="Abmelden" HorizontalAlignment="Left" Height="41" Margin="1234,12,0,0" VerticalAlignment="Top" Width="131" Background="Red" Click="Button_abmelden_Click" FontSize="20" BorderBrush="Black"/>
                     <Button x:Name="Button_PW_text_einblenden" Content="Passwort Text einblenden " HorizontalAlignment="Left" Height="38" Margin="521,627,0,0" VerticalAlignment="Top" Width="242" Background="Black" FontSize="20" BorderBrush="Black" Foreground="White" Click="Button_PW_text_einblenden_Click"/>
                     <Label x:Name="Lable_Gespeichert" Content="Gespeichert" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Height="41" Width="104" FontSize="17" Background="#FF00FF34"/>
+                    
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabItem_PW_generieren" Header="Passwort generieren" Background="#FF00FFE8" Margin="-2.333,0,0.667,0" BorderBrush="Black" Height="30" VerticalAlignment="Bottom" FontSize="17">

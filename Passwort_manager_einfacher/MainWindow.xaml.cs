@@ -16,8 +16,9 @@ using Newtonsoft;
 using System.IO;
 using Newtonsoft.Json;
 using System.Drawing;
-using System.Collections.ObjectModel; 
-
+using System.Collections.ObjectModel;
+using System.Security.Cryptography;
+using Microsoft.Win32;
 
 namespace Passwort_manager_einfacher
 {
@@ -33,7 +34,8 @@ namespace Passwort_manager_einfacher
         #region Variablen
 
         bool erstesMalAnmelden = true;
-        string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\test.json";
+        string path =  @"..\..\bin\debug\test.txt";
+        string path2 = @"..\..\bin\debug\test2.txt";
         User aktiv;
         bool angemeldet;
 
@@ -235,6 +237,10 @@ namespace Passwort_manager_einfacher
         {
             try
             {
+                //File entschlüsseln und verschlüsseltes löschen
+                Sicherheit.DecryptFile(path2, path);
+                File.Delete(path2);
+
 
                 //Schauen ob Datei vorhanden und überprüfen ob registriert
                 using (StreamReader sr = new StreamReader(path))
@@ -243,6 +249,7 @@ namespace Passwort_manager_einfacher
                     string line;
                     while ((line = sr.ReadLine()) != null)
                     {
+
                         User U1 = JsonConvert.DeserializeObject<User>(line);
                         aktiv = U1;
                         erstesMalAnmelden = aktiv.ErstesMalAnmelden;
@@ -258,8 +265,10 @@ namespace Passwort_manager_einfacher
                
 
             }//User ist nicht registriert
-            catch
+            catch(Exception ex)
             {
+               
+
                 FortfahrenAusblenden();
 
                 RegistrierenEinblenden(); 
@@ -444,7 +453,10 @@ namespace Passwort_manager_einfacher
 
         }
 
-//--------------------------------------------------------------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
         private void Button_abmelden_Click(object sender, RoutedEventArgs e)
         {
@@ -465,9 +477,12 @@ namespace Passwort_manager_einfacher
                 //Tab item wechseln
                 TabControl1.SelectedItem = TabItem_Anmelden_Reg;
 
-                AnmeldenEinblenden(); 
-               
+                
 
+                //Fenster schließen
+                Passwort_manager.Close();
+
+             
             }
             else
             {
@@ -479,6 +494,9 @@ namespace Passwort_manager_einfacher
 
                 if(result == MessageBoxResult.Yes)
                 {
+
+                    MessageBox.Show("TESt"); 
+
                     angemeldet = false;
                     ListBox_Ausgeben.Items.Clear();
                     MessageBox.Show("Sie wurden abgemeldet");
@@ -493,10 +511,17 @@ namespace Passwort_manager_einfacher
                     //Tab item wechseln
                     TabControl1.SelectedItem = TabItem_Anmelden_Reg;
 
-                    AnmeldenEinblenden(); 
+                    AnmeldenEinblenden();
+
+//__________________________________________________________________________________________________________________________________________________________________
+
+                    
+
+
 
                 }
                 
+
             }
 
         }
@@ -937,8 +962,19 @@ namespace Passwort_manager_einfacher
 
         }
 
+
         #endregion
 
 
+        #region Fenster Schließen
+        private void Passwort_manager_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Sicherheit.EncryptFile(path, path2);
+            File.Delete(path);
+        }
+
+        #endregion
     }
+
+
 }

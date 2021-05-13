@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="AesOperation.cs" />
     <Compile Include="Passwort.cs" />
+    <Compile Include="Sicherheit.cs" />
     <Compile Include="User.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
