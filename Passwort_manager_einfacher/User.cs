@@ -13,14 +13,16 @@ namespace Passwort_manager_einfacher
         public string Vorname { get; set; }
         public string MasterPW { get; set; }
         public bool ErstesMalAnmelden { get; set; }
+        public string Username { get; set; }
 
         public List<Passwort> ListePasswörter = new List<Passwort> { };
 
 
-        public User(string vorname, string masterPW, bool erstesMalAnmelden)
+        public User(string vorname, string masterPW, string username,  bool erstesMalAnmelden)
         {
             Vorname = vorname;
             MasterPW = masterPW;
+            Username = username; 
             ErstesMalAnmelden = erstesMalAnmelden;
 
         }
