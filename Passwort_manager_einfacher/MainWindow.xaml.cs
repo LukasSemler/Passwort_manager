@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.Security.Cryptography;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Windows.Controls.Primitives;
 
 namespace Passwort_manager_einfacher
 {
@@ -267,14 +268,41 @@ namespace Passwort_manager_einfacher
             TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
         }
 
-       
+
 
 
         #endregion
 
-       
+        #region Check Caps_Lock
+        private void Check_Caps_Lock(object sender, RoutedEventArgs e)
+        {
+            if ((Keyboard.GetKeyStates(Key.CapsLock) & KeyStates.Toggled) == KeyStates.Toggled)
+            {
+                if (PasswortBox_Reg_Passwort.ToolTip == null)
+                {
+                    ToolTip tt = new ToolTip();
+                    tt.Content = "Warning: CapsLock is on";
+                    tt.PlacementTarget = sender as UIElement;
+                    tt.Placement = PlacementMode.Bottom;
+                    PasswortBox_Reg_Passwort.ToolTip = tt;
+                    tt.IsOpen = true;
+                }
+            }
+            else
+            {
+                var currentToolTip = PasswortBox_Reg_Passwort.ToolTip as ToolTip;
+                if (currentToolTip != null)
+                {
+                    currentToolTip.IsOpen = false;
+                }
 
-      
+                PasswortBox_Reg_Passwort.ToolTip = null;
+            }
+        }
+
+        #endregion
+
+
 
         #region TAB1
 
@@ -1010,6 +1038,11 @@ namespace Passwort_manager_einfacher
         }
 
         #endregion
+
+
+        
+
+
     }
 
 
