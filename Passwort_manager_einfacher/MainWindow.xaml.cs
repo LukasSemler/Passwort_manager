@@ -153,11 +153,7 @@ namespace Passwort_manager_einfacher
         }
 
 
-        public void FelderAccLöschen()
-        {
-            PasswordBox_Acc_löschen.Clear();
-            PasswordBox_Acc_löschen_WH.Clear();
-        }
+    
 
 
 
@@ -188,7 +184,7 @@ namespace Passwort_manager_einfacher
             //TabItem_ausblenden
             TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
             TabItem_PW_generieren.Visibility = Visibility.Hidden;
-            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+           
         }
 
         public void AnmeldenEinblenden()
@@ -206,7 +202,7 @@ namespace Passwort_manager_einfacher
             //Tab Item einblenden
             TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Visible;
             TabItem_PW_generieren.Visibility = Visibility.Visible;
-            TabItem_Acc_löschen.Visibility = Visibility.Visible;
+           
         }
 
         public void TabItemsAusblenden()
@@ -214,7 +210,7 @@ namespace Passwort_manager_einfacher
             //Tab Item einblenden
             TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
             TabItem_PW_generieren.Visibility = Visibility.Hidden;
-            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+       
         }
 
         public void RegistrierenEinblenden()
@@ -263,7 +259,7 @@ namespace Passwort_manager_einfacher
         public void AndereTabItemAusblenden()
         {
             //Andere Tab Item ausblenden
-            TabItem_Acc_löschen.Visibility = Visibility.Hidden;
+
             TabItem_PW_generieren.Visibility = Visibility.Hidden;
             TabItem_PW_hinzufügen_löschen.Visibility = Visibility.Hidden;
         }
@@ -301,8 +297,6 @@ namespace Passwort_manager_einfacher
         }
 
         #endregion
-
-
 
         #region TAB1
 
@@ -408,24 +402,27 @@ namespace Passwort_manager_einfacher
 
         private void Button_Anmelden_Click(object sender, RoutedEventArgs e)
         {
+            
             try
             {
                 string UsernameEingabe = TextBox_Login_Username.Text;
                 string PasswortEingabe = PasswortBox_Passwort.Password;
                 string passwort_entschlüsselt;
 
+
                 foreach (var item in ListeRegUser)
                 {
                     
                     passwort_entschlüsselt = AesOperation.DecryptString(key, item.MasterPW);
                     //item.MasterPW = passwort_entschlüsselt;
-                    
 
                     
                     if (UsernameEingabe == item.Username )
                     {
+                       
                         if (PasswortEingabe == passwort_entschlüsselt)
                         {
+                           
                             aktiv = item;
                             TabItemsEinblenden();
                             MessageBox.Show($"Willkommen {aktiv.Vorname}");
@@ -444,16 +441,18 @@ namespace Passwort_manager_einfacher
 
                             ListBox_Ausgeben.ItemsSource = aktiv.ListePasswörter;
 
+
+                            break; 
                         }
                         else
                         {
-                            MessageBox.Show("Die Passwort ist nicht korrekt");
+                           
                         }
 
                     }
                     else
                     {
-                       
+                        
                     }
                 
                 }
@@ -706,13 +705,13 @@ namespace Passwort_manager_einfacher
             {
                 Radio_Großbuchstaben_Nein.IsChecked = false;
                 Großbuchstaben = true;
-                MessageBox.Show(Großbuchstaben.ToString()); 
+               
             }
             else if (Radio_Großbuchstaben_Nein.IsChecked == true)
             {
                 Radio_Großbuchstaben_Ja.IsChecked = false;
                 Großbuchstaben = false;
-                MessageBox.Show(Großbuchstaben.ToString());
+                
             }
             
         }
@@ -885,7 +884,7 @@ namespace Passwort_manager_einfacher
                 char[] lower_case = new char[] { 'z', 'y', 'x', 'w', 'v', 'u', 't', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a', };
                 char[] upper_case = new char[] { 'Z', 'Y', 'X', 'W', 'V', 'U', 'T', 'S', 'R', 'Q', 'P', 'O', 'N', 'M', 'L', 'K', 'J', 'I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A', };
                 char[] numbers = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0' };
-                char[] symbols = new char[] { '²', '³', '{', '[', ']', '}', '\\', '^', '°', '!', '"', '§', '$', '%', '&', '/', '(', ')', '=', '?', '`', '´', '+', '*', '~', '#', '\'', '-', '_', '.', ':', ',', ';', '<', '>', '|' };
+                char[] symbols = new char[] { '{', '[', ']', '}', '\\', '!', '"', '§', '$', '%', '&', '/', '(', ')', '=', '?', '+', '*', '~', '#', '\'', '-', '_', '.', ':', ',', ';','|' };
 
                 System.Text.StringBuilder pool = new System.Text.StringBuilder();
 
@@ -957,84 +956,13 @@ namespace Passwort_manager_einfacher
 
         #endregion
 
-        #region TAB4
-
-        //_______________________________________________Tab4__________________________________________________________
-
-        private void Button_Acc_löschen_Click(object sender, RoutedEventArgs e)
-        {
-            string passwortentschlüsselt = AesOperation.DecryptString(key, aktiv.MasterPW);
-            
-
-            if (aktiv.ErstesMalAnmelden == false)
-            {
-                if (PasswordBox_Acc_löschen.Password == passwortentschlüsselt)
-                {
-                    if (PasswordBox_Acc_löschen_WH.Password == passwortentschlüsselt)
-                    {
-                        string MessageBox_text = "Wenn Sie auf 'löschen' drücken wird Ihr Account und Ihre Daten für immer gelöscht!";
-                        string caption = "Account löschen";
-                        MessageBoxButton button = MessageBoxButton.YesNo;
-                        MessageBoxImage icon = MessageBoxImage.Warning;
-                        MessageBoxResult result = MessageBox.Show(MessageBox_text, caption, button, icon);
-
-                        if (result == MessageBoxResult.No)
-                        {
-                            MessageBox.Show("Der Account wurde nicht gelöscht");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ihr Account wurde gelöscht");
-
-
-                            ListeRegUser.Remove(aktiv); 
-
-
-                            //File löschen
-                            File.Delete(path);
-
-                            //File schreiben
-                            string JsonSchreiben = JsonConvert.SerializeObject(ListeRegUser);
-                            using (StreamWriter sw = new StreamWriter(path))
-                            {
-                                sw.WriteLine(JsonSchreiben);
-                            }
-
-
-                            AnmeldenEinblenden();
-                            RegistrierenEinblenden();
-                            TabItem_Anmelden_Reg.Visibility = Visibility.Visible;
-                            TabControl1.SelectedItem = TabItem_Anmelden_Reg; 
-                            TabItemsAusblenden(); 
-                            
-
-
-                        }
-                    }
-                    else
-                        MessageBox.Show("Die Passwörter stimmen nicht überein!");
-                }
-                else
-                    MessageBox.Show("Das Passwort ist nicht Ihr Master Passwort");
-
-            }
-            else
-                MessageBox.Show("Sie müssen sich zuerst einen Account erstellen");
-
-
-
-
-        }
-
-
-        #endregion
-
 
         #region Fenster Schließen
         private void Passwort_manager_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Sicherheit.EncryptFile(path, path2);
             File.Delete(path);
+
         }
 
         #endregion
